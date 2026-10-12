@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEXORA Prototipo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-112 -112 224 224' width='512' height='512'%3E%3Cdefs%3E%3ClinearGradient id='gA' gradientUnits='userSpaceOnUse' x1='-80' y1='-70' x2='80' y2='70'%3E%3Cstop offset='0' stop-color='%2367E8F9'/%3E%3Cstop offset='1' stop-color='%2334D399'/%3E%3C/linearGradient%3E%3ClinearGradient id='gB' gradientUnits='userSpaceOnUse' x1='-80' y1='70' x2='80' y2='-70'%3E%3Cstop offset='0' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%23A5B4FC'/%3E%3C/linearGradient%3E%3CclipPath id='k0'%3E%3Ccircle cx='0' cy='39.3' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k1'%3E%3Ccircle cx='0' cy='-39.3' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k2'%3E%3Ccircle cx='50.4' cy='0' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k3'%3E%3Ccircle cx='-50.4' cy='0' r='30'/%3E%3C/clipPath%3E%3Cmask id='mB' maskUnits='userSpaceOnUse' x='-120' y='-120' width='240' height='240'%3E%3Crect x='-120' y='-120' width='240' height='240' fill='%23fff'/%3E%3Cg clip-path='url(%23k0)'%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='%23000' stroke-width='44' stroke-linejoin='round'/%3E%3C/g%3E%3Cg clip-path='url(%23k1)'%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='%23000' stroke-width='44' stroke-linejoin='round'/%3E%3C/g%3E%3C/mask%3E%3Cmask id='mA' maskUnits='userSpaceOnUse' x='-120' y='-120' width='240' height='240'%3E%3Crect x='-120' y='-120' width='240' height='240' fill='%23fff'/%3E%3Cg clip-path='url(%23k2)'%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='%23000' stroke-width='44' stroke-linejoin='round'/%3E%3C/g%3E%3Cg clip-path='url(%23k3)'%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='%23000' stroke-width='44' stroke-linejoin='round'/%3E%3C/g%3E%3C/mask%3E%3C/defs%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='url(%23gB)' stroke-width='27' stroke-linejoin='round' mask='url(%23mB)'/%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='url(%23gA)' stroke-width='27' stroke-linejoin='round' mask='url(%23mA)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/20px Inter,system-ui,Segoe UI,sans-serif}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;border-radius:12px;padding:0 16px;min-height:40px}
+button:disabled{opacity:.45;cursor:not-allowed}
+input{font:inherit;border-radius:12px;padding:0 14px;min-height:48px}
+h1{font:700 28px/36px 'Plus Jakarta Sans',Inter,sans-serif;margin-bottom:16px}
+h2{font:600 18px/26px 'Plus Jakarta Sans',Inter,sans-serif;margin-bottom:10px}
+header{display:flex;align-items:center;gap:16px;padding:10px 20px;border-bottom:1px solid;flex-wrap:wrap}
+.logo{letter-spacing:.14em;font-size:18px}
+.tabs{display:flex;gap:6px;margin-left:auto}
+.v{display:none}.v.show{display:block}
+#v-dash.show{display:grid;grid-template-columns:auto 1fr;min-height:calc(100vh - 64px)}
+#sb{width:220px;padding:12px;border-right:1px solid;transition:width .2s;overflow-x:hidden;overflow-y:auto}
+#sb.col{width:72px}#sb.col .lb{display:none}
+.nav button{display:flex;gap:12px;width:100%;text-align:left;align-items:center;margin-top:6px}
+.main{padding:24px;min-width:0}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:16px}
+.cd{border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.2),0 8px 24px rgba(0,0,0,.08)}
+.pn{padding:16px}
+.num{font:700 32px/40px 'Plus Jakarta Sans',Inter,sans-serif}
+.two{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+@media(max-width:900px){.two{grid-template-columns:1fr}}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;margin-top:8px}
+.rw{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.acts{display:flex;gap:6px}
+.drw{position:fixed;top:0;right:0;bottom:0;width:340px;max-width:100%;padding:20px;border-left:1px solid;transform:translateX(100%);transition:transform .2s;z-index:20}
+.drw.open{transform:none}
+.ph{width:360px;max-width:100%;height:720px;margin:24px auto;border-radius:36px;border:8px solid #1B1F29;display:flex;flex-direction:column;overflow:hidden}
+.scr{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.tb{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid;height:72px}
+.tb button{border-radius:0;display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:12px;padding:0}
+.ms{display:flex;justify-content:space-between;align-items:center;padding:8px 12px}
+.bar{padding:8px 12px;font-weight:600;font-size:13px}
+.pan{padding:6px 12px;font-size:12px;text-align:center;opacity:.7}
+.t{min-height:48px}.w{width:100%}
+.big{min-height:64px;font:600 18px/24px Inter,sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.dots{display:flex;gap:6px}.dots i{height:4px;flex:1;border-radius:2px;background:#8884}.dots i.on{background:#4F46E5}
+.dot{width:10px;height:10px;border-radius:50%;background:currentColor;display:inline-block;margin-right:8px}
+.scn{height:260px;position:relative;overflow:hidden;display:grid;place-items:center}
+.ln{position:absolute;left:0;right:0;height:3px;background:#7DD3FC;animation:sc 1.4s ease-in-out infinite alternate}
+@keyframes sc{from{top:0}to{top:100%}}
+.bar2{height:8px;border-radius:4px;background:#8883}.bar2 i{display:block;height:100%;border-radius:4px;background:#4F46E5;transition:width .3s}
+.ks{max-width:1100px;margin:24px auto;min-height:620px;border-radius:24px;border:1px solid;padding:32px;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.kc{min-height:170px;font:600 24px/32px Inter,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}
+.ki{font-size:40px}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:420px;margin:0 auto;width:100%}
+.kp button{min-height:72px;font:600 24px/32px Inter,sans-serif}
+.kd{font:700 40px/48px Inter,sans-serif;text-align:center}
+.kk{text-align:center;font:600 22px/30px Inter,sans-serif}
+.spn{width:48px;height:48px;border-radius:50%;border:5px solid #8884;border-top-color:#4F46E5;animation:rt 1s linear infinite;margin:auto}
+@keyframes rt{to{transform:rotate(360deg)}}
+#bn{position:sticky;top:0;z-index:40;background:#A30D25;color:#fff;display:flex;gap:12px;align-items:center;padding:12px 20px;flex-wrap:wrap}
+#bn button{background:#fff;color:#A30D25;font-weight:700}
+#pw{position:fixed;right:20px;bottom:20px;width:88px;height:88px;border-radius:50%;padding:6px;z-index:30}
+#pb{width:100%;height:100%;border-radius:50%;background:#A30D25;color:#fff;font-weight:700;font-size:18px;padding:0;box-shadow:0 8px 24px rgba(200,16,46,.5);touch-action:none;user-select:none}
+#toasts{position:fixed;left:20px;bottom:20px;display:flex;flex-direction:column;gap:8px;z-index:60}
+.toast{display:flex;gap:12px;align-items:center;padding:10px 14px}
+.toast .ub{min-height:36px}
+.md{position:fixed;inset:0;background:rgba(0,0,0,.6);display:grid;place-items:center;z-index:50}
+.mdi{width:min(760px,94vw);max-height:80vh;overflow:auto;padding:20px}
+.mono{font:12px/16px ui-monospace,monospace;flex-direction:column;align-items:flex-start;gap:2px}
+.logo{background:linear-gradient(90deg,#818CF8,#7DD3FC);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;display:inline-flex;align-items:center;gap:.55em}
+.logo::before{content:'';width:1.7em;height:1.7em;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-112 -112 224 224' width='512' height='512'%3E%3Cdefs%3E%3ClinearGradient id='gA' gradientUnits='userSpaceOnUse' x1='-80' y1='-70' x2='80' y2='70'%3E%3Cstop offset='0' stop-color='%2367E8F9'/%3E%3Cstop offset='1' stop-color='%2334D399'/%3E%3C/linearGradient%3E%3ClinearGradient id='gB' gradientUnits='userSpaceOnUse' x1='-80' y1='70' x2='80' y2='-70'%3E%3Cstop offset='0' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%23A5B4FC'/%3E%3C/linearGradient%3E%3CclipPath id='k0'%3E%3Ccircle cx='0' cy='39.3' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k1'%3E%3Ccircle cx='0' cy='-39.3' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k2'%3E%3Ccircle cx='50.4' cy='0' r='30'/%3E%3C/clipPath%3E%3CclipPath id='k3'%3E%3Ccircle cx='-50.4' cy='0' r='30'/%3E%3C/clipPath%3E%3Cmask id='mB' maskUnits='userSpaceOnUse' x='-120' y='-120' width='240' height='240'%3E%3Crect x='-120' y='-120' width='240' height='240' fill='%23fff'/%3E%3Cg clip-path='url(%23k0)'%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='%23000' stroke-width='37' stroke-linejoin='round'/%3E%3C/g%3E%3Cg clip-path='url(%23k1)'%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='%23000' stroke-width='37' stroke-linejoin='round'/%3E%3C/g%3E%3C/mask%3E%3Cmask id='mA' maskUnits='userSpaceOnUse' x='-120' y='-120' width='240' height='240'%3E%3Crect x='-120' y='-120' width='240' height='240' fill='%23fff'/%3E%3Cg clip-path='url(%23k2)'%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='%23000' stroke-width='37' stroke-linejoin='round'/%3E%3C/g%3E%3Cg clip-path='url(%23k3)'%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='%23000' stroke-width='37' stroke-linejoin='round'/%3E%3C/g%3E%3C/mask%3E%3C/defs%3E%3Cpath d='M-61.64 8.82L23.47 -57.67A31 31 0 0 1 61.64 -8.82L-23.47 57.67A31 31 0 0 1 -61.64 8.82Z' fill='none' stroke='url(%23gB)' stroke-width='20' stroke-linejoin='round' mask='url(%23mB)'/%3E%3Cpath d='M-23.47 -57.67L61.64 8.82A31 31 0 0 1 23.47 57.67L-61.64 -8.82A31 31 0 0 1 -23.47 -57.67Z' fill='none' stroke='url(%23gA)' stroke-width='20' stroke-linejoin='round' mask='url(%23mA)'/%3E%3C/svg%3E") center/contain no-repeat;letter-spacing:0}
+.cy{background:linear-gradient(135deg,#0C4A6E,#075985);color:#fff}
+.pl{padding:3px 10px;border-radius:999px;font-weight:600;font-size:13px}
+.m0{color:#818CF8}.m1{color:#FBBF24}.m2{color:#38BDF8}.m3{color:#34D399}.m4{color:#F472B6}
+.m0,.m1,.m2,.m3,.m4{box-shadow:inset 0 3px 0 currentColor,0 8px 24px rgba(0,0,0,.12)}
+.sp{display:flex;gap:3px;align-items:flex-end;height:24px;margin-top:6px}.sp i{flex:1;background:currentColor;opacity:.55;border-radius:2px}
+.bi{box-shadow:inset 4px 0 0 #818CF8}.bw{box-shadow:inset 4px 0 0 #FBBF24}.bc{box-shadow:inset 4px 0 0 #38BDF8}
+.sel{outline:2px solid currentColor;outline-offset:-2px}
+.hm{display:grid;grid-template-columns:34px repeat(24,1fr);gap:2px;font-size:10px;align-items:center}.hm i{height:18px;border-radius:3px}
+table{width:100%;border-collapse:collapse}td,th{padding:8px 6px;text-align:right}td:first-child,th:first-child{text-align:left}tr{border-bottom:1px solid #8883}
+.ph button,.ks button,#bn button{min-height:48px}
+@media(pointer:coarse){button,select{min-height:48px}}
+</style>
+<style id="th"></style>
+</head>
+<body>
+<div id="bn" hidden>
+  <b>ALERTA DE PÁNICO</b><span id="bt"></span><b id="bc"></b><button id="ba">Atender</button><button id="bf" hidden>Falsa alarma</button>
+</div>
+<header class="sf">
+  <b class="logo">NEXORA</b><span class="mu">Toda la seguridad, conectada</span>
+  <nav class="tabs">
+    <button class="on" data-v="v-dash">Dashboard</button>
+    <button data-v="v-mob">App móvil</button>
+    <button data-v="v-kio">Kiosco</button>
+    <button data-v="v-res">Residente</button>
+  </nav>
+  <span id="us" class="mu" style="font-size:12px"></span><button id="lo" class="gh" hidden onclick="logout()">Salir</button>
+  <select id="cp" aria-label="Copropiedad" onchange="setCop(this.value)"></select>
+  <button id="tg" class="gh">Claro / Oscuro</button>
+</header>
+<div id="sysb" class="bar" hidden></div>
+
+<section id="v-dash" class="v show">
+  <aside id="sb" class="sf">
+    <button id="cl" class="gh" aria-label="Contraer menú">☰</button>
+    <div class="nav" id="nv"></div>
+  </aside>
+  <div class="main">
+    <div id="pv0">
+    <h1>Resumen <span class="pl ok" style="font-size:12px;vertical-align:middle">● En vivo</span></h1>
+    <div class="g4" id="mt"></div>
+    <div class="two">
+      <div class="cd pn"><h2>Accesos en vivo</h2><div id="tl"></div></div>
+      <div class="cd pn"><h2>Pendientes</h2><div id="ic"></div></div>
+    </div>
+    <div class="cd pn" style="margin-top:16px"><h2>Dentro ahora</h2><div id="in"></div></div>
+    </div>
+    <div id="pv1" hidden>
+      <h1>Trazabilidad comparada <span class="pl wa" style="font-size:12px;vertical-align:middle">Datos simulados</span></h1>
+      <div class="chips" id="fp" style="margin-bottom:8px"></div>
+      <div class="chips" id="fd" style="margin-bottom:16px"></div>
+      <div class="g4" id="tk"></div>
+      <div class="two">
+        <div class="cd pn"><h2 id="ct"></h2><div id="ch"></div></div>
+        <div class="cd pn"><h2>Detalle</h2><div id="tb2" style="max-height:300px;overflow:auto"></div></div>
+      </div>
+      <div class="cd pn" style="margin-top:16px"><h2>Mapa de calor: ingresos por hora y día (últimos 90 días)</h2><div id="hm"></div></div>
+      <button class="gh t" style="margin-top:12px" onclick="exportCsv()">Exportar CSV</button> <button class="cy t" style="margin-top:12px" onclick="svw()">Guardar vista en Reportes</button>
+    </div>
+    <div id="pvx" hidden></div>
+  </div>
+  <div id="dr" class="sf drw"></div>
+</section>
+
+<section id="v-mob" class="v">
+  <div class="ph sf"><div id="ms"></div><div id="mc" class="scr"></div><nav id="mb" class="tb"></nav></div>
+</section>
+
+<section id="v-kio" class="v"><div id="ks" class="ks sf"></div></section>
+
+<section id="v-res" class="v">
+  <div class="ph sf"><div class="ms"><b class="logo">NEXORA</b><span class="mu" id="rh"></span></div><div id="rc" class="scr"></div></div>
+</section>
+
+<div id="md" class="md" hidden>
+  <div class="cd mdi sf">
+    <div class="rw"><h2>Auditoría forense</h2><div class="acts"><button class="cy" onclick="vch()">Verificar integridad</button><button class="gh" onclick="expAudit()">Exportar</button><button class="gh" onclick="tamper()">Simular alteración</button><button class="gh" onclick="rstLog()">Reiniciar</button><button id="mx" class="gh">Cerrar</button></div></div>
+    <input id="af" class="w" style="margin:8px 0" placeholder="Filtrar por persona, medio o evento" oninput="audit(1)"><p id="ar" class="mu"></p>
+    <p class="mu">Registro de solo adición con hash encadenado. Demostración del concepto: en producción el sellado lo hace el servidor.</p>
+    <div id="ml"></div>
+  </div>
+</div>
+
+<div id="lg" class="md" style="z-index:100;background:rgba(11,13,18,.97)" hidden><div class="cd mdi sf" id="lgb" style="width:min(520px,94vw)"></div></div>
+
+<div id="gm" class="md" hidden><div class="cd mdi sf" id="gb"></div></div>
+
+<div id="pw"><button id="pb" aria-label="Botón de pánico. Mantener presionado 1.5 segundos">SOS</button></div>
+<div id="toasts"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const T={
+ d:{bg:'#0B0D12',sf:'#12151C',cd:'#1B1F29',bd:'#2A2F3C',tx:'#F6F7FA',mu:'#A3ABBD',ac:'#A5B4FC',acb:'#4338CA',ok:'#34D399',wa:'#FBBF24',er:'#FCA5A5'},
+ l:{bg:'#F6F7FA',sf:'#FFFFFF',cd:'#FFFFFF',bd:'#D9DDE6',tx:'#0B0D12',mu:'#4B5365',ac:'#4338CA',acb:'#4338CA',ok:'#095C39',wa:'#7C4A03',er:'#9F1D13'}
+};
+let dark=true;
+function theme(){
+ const t=dark?T.d:T.l;
+ $('#th').textContent=`body{background:${t.bg};color:${t.tx}}
+.sf{background:${t.sf};border-color:${t.bd}}
+.cd{background:${t.cd};border:1px solid ${t.bd}}
+.mu{color:${t.mu}}.ok{color:${t.ok}}.wa{color:${t.wa}}.er{color:${t.er}}.ac{color:${t.ac}}
+.pri{background:linear-gradient(135deg,${t.acb},#6D28D9);color:#fff}
+.gh,.chip{border:1px solid ${t.bd}}
+.chip.on{background:${t.acb};color:#fff;border-color:${t.acb}}
+input{background:${t.bg};color:${t.tx};border:1px solid ${t.bd}}
+:focus-visible{outline:3px solid ${t.ac};outline-offset:2px}
+.nav .on,.tabs .on{background:${t.acb};color:#fff}
+.tb .on{color:${t.ac}}
+.bar{background:${t.wa};color:${dark?'#0B0D12':'#fff'}}
+body{background-image:radial-gradient(900px 420px at 8% -8%,rgba(79,70,229,${dark?.32:.14}),transparent),radial-gradient(700px 380px at 100% 0,rgba(14,165,233,${dark?.16:.1}),transparent);background-attachment:fixed}
+header.sf{background:linear-gradient(90deg,${t.acb} -30%,${t.sf} 50%)}
+.ph.sf{background:linear-gradient(180deg,${dark?'#171B2E':'#EEF0FF'},${t.sf} 40%)}
+.ks.sf{background:linear-gradient(160deg,${dark?'#161A33':'#EEF0FF'},${t.sf} 55%)}
+.pl.ok{background:${dark?'rgba(52,211,153,.16)':'#E7F6EF'}}
+.pl.er{background:${dark?'rgba(248,113,113,.16)':'#FDECEA'}}
+.pl.wa{background:${dark?'rgba(251,191,36,.16)':'#FFF4DC'}}
+select{background:${t.sf};color:${t.tx};border:1px solid ${t.bd};border-radius:12px;padding:0 10px;min-height:40px;font:inherit}
+:root{--b1:${dark?'#818CF8':'#4338CA'};--b2:${dark?'#64748B':'#94A3B8'}}
+.m0{color:${dark?'#A5B4FC':'#4338CA'}}.m1{color:${dark?'#FCD34D':'#7C4A03'}}.m2{color:${dark?'#7DD3FC':'#075985'}}.m3{color:${dark?'#6EE7B7':'#095C39'}}.m4{color:${dark?'#F9A8D4':'#9D174D'}}
+.drw.sf,.mdi.sf{background:${dark?'rgba(18,21,28,.8)':'rgba(255,255,255,.82)'};backdrop-filter:blur(16px)}
+header.sf{backdrop-filter:blur(16px)}`;
+}
+const hora=()=>new Date().toTimeString().slice(0,8);
+const ICO={res:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',trz:'<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/>',gua:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>',uni:'<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',per:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 5a3 3 0 010 6"/><path d="M21 20c0-2.6-1.6-4.8-4-5.6"/>',rep:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/>',val:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10"/><path d="M9.5 9.5C9.5 8.4 10.6 8 12 8s2.5.6 2.5 1.7-1 1.4-2.5 1.6-2.5.6-2.5 1.7S10.6 16 12 16s2.5-.4 2.5-1.5"/>',por:'<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/>',cfg:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',aud:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',qr:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 20h1"/>',visitor:'<circle cx="10" cy="8" r="4"/><path d="M2 21c0-4 3.6-7 8-7"/><path d="M18 8v6M15 11h6"/>',package:'<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',tool:'<path d="M14.7 6.3a4 4 0 00-5 5L3 18l3 3 6.7-6.7a4 4 0 005-5l-2.5 2.5-2.5-.5-.5-2.5z"/>',door:'<path d="M5 21V4h10v17"/><path d="M3 21h18"/><path d="M12 12h.01"/>',round:'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 000-6h-4a3 3 0 010-6h6"/>',alert:'<path d="M5 21V4"/><path d="M5 4h12l-2 4 2 4H5"/>',cor:'<path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/>',cov:'<path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/>',prd:'<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/>'};
+function ic(n,z){return `<svg viewBox="0 0 24 24" width="${z||20}" height="${z||20}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none">${ICO[n]||''}</svg>`}
+
+const GEN='0000000000000000';
+const K256=[],H0=[];(function(){let n=2,c=0;while(c<64){let p=true;for(let d=2;d*d<=n;d+=1)if(n%d==0){p=false;break}if(p){if(c<8)H0[c]=Math.floor((Math.sqrt(n)%1)*4294967296);K256[c]=Math.floor((Math.cbrt(n)%1)*4294967296);c+=1}n+=1}})();
+function sha(str){
+ const b=new TextEncoder().encode(str),l=b.length*8,n=((b.length+9+63)>>6)<<6,m=new Uint8Array(n);m.set(b);m[b.length]=128;
+ const dv=new DataView(m.buffer);dv.setUint32(n-4,l>>>0);dv.setUint32(n-8,Math.floor(l/4294967296));
+ const H=H0.slice(),w=new Uint32Array(64);
+ for(let o=0;o<n;o+=64){
+  for(let i=0;i<16;i+=1)w[i]=dv.getUint32(o+i*4);
+  for(let i=16;i<64;i+=1){const a=w[i-15],c=w[i-2],s0=((a>>>7)|(a<<25))^((a>>>18)|(a<<14))^(a>>>3),s1=((c>>>17)|(c<<15))^((c>>>19)|(c<<13))^(c>>>10);w[i]=(w[i-16]+s0+w[i-7]+s1)>>>0}
+  let a=H[0],b2=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];
+  for(let i=0;i<64;i+=1){const S1=((e>>>6)|(e<<26))^((e>>>11)|(e<<21))^((e>>>25)|(e<<7)),ch=(e&f)^(~e&g),t1=(h+S1+ch+K256[i]+w[i])>>>0,S0=((a>>>2)|(a<<30))^((a>>>13)|(a<<19))^((a>>>22)|(a<<10)),mj=(a&b2)^(a&c)^(b2&c),t2=(S0+mj)>>>0;h=g;g=f;f=e;e=(d+t1)>>>0;d=c;c=b2;b2=a;a=(t1+t2)>>>0}
+  [a,b2,c,d,e,f,g,h].forEach((x,i)=>{H[i]=(H[i]+x)>>>0})}
+ return H.map(x=>x.toString(16).padStart(8,'0')).join('')}
+function hs(s){return sha(s).slice(0,16)}
+let LOG=[],ph=GEN;
+try{const sv=JSON.parse(localStorage.getItem('nexora_log')||'[]');if(Array.isArray(sv)&&sv.length){LOG=sv;ph=sv[0].h}}catch(e){}
+function savLog(){try{localStorage.setItem('nexora_log',JSON.stringify(LOG.slice(0,300)))}catch(e){}}
+function log(ev,who,medio){let c='';try{c=COP[CI].n}catch(e){}const ts=new Date().toISOString(),h=hs(ph+ts+c+ev+who+medio);LOG.unshift({ts,c,ev,who,medio,h,prev:ph});ph=h;savLog()}
+
+function toast(msg,undo,secs){
+ const d=document.createElement('div');d.className='toast cd';d.innerHTML='<span>'+msg+'</span>';
+ if(undo){let n=secs||8;const b=document.createElement('button');b.className='pri ub';b.textContent='Deshacer ('+n+')';
+  const iv=setInterval(()=>{n-=1;b.textContent='Deshacer ('+n+')';if(n<=0){clearInterval(iv);d.remove()}},1000);
+  b.onclick=()=>{clearInterval(iv);undo();d.remove()};d.append(b)}
+ else setTimeout(()=>d.remove(),3500);
+ $('#toasts').append(d)}
+
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.v').forEach(v=>v.classList.remove('show'));
+ $('#'+b.dataset.v).classList.add('show');
+ document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b))});
+$('#tg').onclick=()=>{dark=!dark;theme()};
+
+let NID=100;
+const LB={ok:{Ingreso:'Autorizado',Incidencia:'Resuelta'},no:{Ingreso:'Rechazado',Incidencia:'Escalada'}};
+function mt(){
+ const open=items.filter(i=>i.k=='Incidencia'&&i.st=='p').length,ex=PRES.filter(over).length;
+ $('#mt').innerHTML=[['Accesos activos',PRES.length,'Dentro ahora'],['Permanencia excedida',ex,'Según el protocolo'],['Incidentes abiertos',open,'Por antigüedad'],['Respuesta media',mv('resp',DD.slice(-7))+' min','Últimos 7 días'],['Paquetes pendientes',UL.reduce((a,u)=>a+u.paq,0),'Correspondencia']]
+ .map((m,i)=>`<div class="cd pn m${i}"><span class="mu">${m[0]}</span><div class="num">${m[1]}</div><span class="mu">${m[2]}</span><div class="sp">${[5,8,6,10,7,12,9].map(h=>`<i style="height:${h*2}px"></i>`).join('')}</div></div>`).join('')}
+function rtl(){$('#tl').innerHTML=TL.map(e=>`<div class="cd row bc"><span><b>${e.h}</b> ${e.txt}</span><span class="mu">${e.medio}</span></div>`).join('')}
+function addTl(txt,medio){TL.unshift({h:hora(),txt,medio});if(TL.length>7)TL.pop();rtl()}
+function ri(){
+ $('#ic').innerHTML=items.map(i=>{
+  const a=i.k=='Ingreso'?['Aprobar','Rechazar']:['Resolver','Escalar'];
+  const act=i.st=='p'&&!ROLES[ROLE].act?'<span class="pl wa">Solo lectura</span>':i.st=='p'?`<button class="pri" onclick="act(${i.id},'ok')">${a[0]}</button><button class="gh" onclick="act(${i.id},'no')">${a[1]}</button>`:`<b class="pl ${i.st=='ok'?'ok':'er'}">${LB[i.st][i.k]}</b>`;
+  return `<div class="cd row ${i.k=='Ingreso'?'bi':'bw'}"><div onclick="od(${i.id})" style="cursor:pointer;flex:1"><b>${i.k}</b> <span class="mu">${i.h}</span><br>${i.t}</div><div class="acts">${act}</div></div>`}).join('');
+ mt()}
+function act(id,s){
+ const it=items.find(x=>x.id==id),prev=it.st;it.st=s;ri();
+ log(it.k+' '+LB[s][it.k]+': '+it.t,'Administrador','Panel web');
+ const ep=(s=='ok'&&it.k=='Ingreso'&&it.unit)?enter({doc:it.doc,n:it.n,unit:it.unit,tipo:it.tipo},'Panel admin'):null;
+ toast(LB[s][it.k]+': '+it.t,()=>{it.st=prev;if(ep)unEnter(ep);ri();log('Acción deshecha: '+it.t,'Administrador','Panel web')},8)}
+function od(id){
+ const it=items.find(x=>x.id==id),inc=it.k=='Incidencia';
+ it.log=it.log||[];it.msgs=it.msgs||[];
+ $('#dr').innerHTML=`<div class="rw"><h2>Detalle</h2><button class="gh" onclick="$('#dr').classList.remove('open')">Cerrar</button></div>
+ <p><b>${it.k}</b></p><p>${it.t}</p><p class="mu">Solicitud a las ${it.h}. Origen: ${it.who}.</p>
+ <p class="mu">Estado: ${it.st=='p'?(it.resp?'En atención':'Pendiente'):LB[it.st][it.k]}</p>
+ ${inc&&it.st=='p'?`<h2 style="margin-top:12px">Responsable</h2><div class="chips">${GN.slice(0,4).map(g=>`<button class="chip t ${it.resp==g?'on':''}" onclick="asg(${id},'${g}')">${g}</button>`).join('')}</div>
+ <button class="gh t w" style="margin-top:8px" onclick="evd(${id})">${it.ev?'Evidencia adjunta (1 foto)':'Adjuntar evidencia'}</button>
+ ${INT.cam.on?`<button class="gh t w" style="margin-top:8px" onclick="toast('Cuadro de cámara adjuntado (simulación)')">Adjuntar cuadro de cámara</button>`:''}
+ <input id="nt" class="w" style="margin-top:8px" placeholder="Nota de cierre"><button class="pri t w" style="margin-top:8px" onclick="cls(${id})">Resolver con nota</button>`:''}
+ <h2 style="margin-top:12px">Conversación del evento</h2>${it.msgs.length?it.msgs.map(m=>`<p><b>${m.a}</b> <span class="mu">${m.t}</span><br>${m.x}</p>`).join(''):'<p class="mu">Sin mensajes. Las instrucciones quedan asociadas a este evento.</p>'}
+ <div class="chips">${['@Supervisor','@Carlos Mena','@Residente'].map(x=>`<button class="chip" onclick="$('#cm').value+='${x} ';$('#cm').focus()">${x}</button>`).join('')}</div>
+ <input id="cm" class="w" style="margin-top:8px" placeholder="Escribe una instrucción o respuesta"><button class="cy t w" style="margin-top:8px" onclick="cmt(${id})">Enviar</button>
+ <h2 style="margin-top:12px">Historial</h2>${it.log.length?it.log.map(l=>`<p class="mu">${l}</p>`).join(''):'<p class="mu">Sin acciones registradas.</p>'}
+ <button class="cy t w" style="margin-top:12px" onclick="toast('Llamando...')">Contactar</button>`;
+ $('#dr').classList.add('open')}
+function cmt(id){const it=items.find(x=>x.id==id),v=$('#cm').value.trim();if(!v)return;
+ it.msgs.push({a:ROLE,t:hora(),x:v});log('Mensaje en evento ('+it.t+'): '+v,ROLE,'Chat del evento');
+ (v.match(/@(Supervisor|Residente|Carlos Mena)/g)||[]).forEach(m=>toast('Notificado: '+m.slice(1)+(INT.wa.on&&m=='@Residente'?' por WhatsApp':'')));od(id)}
+function asg(id,g){const it=items.find(x=>x.id==id);it.resp=g;it.log.push(hora()+' Asignada a '+g);log('Incidencia asignada a '+g+': '+it.t,'Administrador','Panel web');toast('Asignada a '+g);od(id)}
+function evd(id){const it=items.find(x=>x.id==id);it.ev=1;it.log.push(hora()+' Evidencia adjunta');log('Evidencia adjunta: '+it.t,'Administrador','Panel web');od(id)}
+function cls(id){const it=items.find(x=>x.id==id),n=$('#nt').value.trim();if(!it.resp){toast('Asigna un responsable antes de cerrar');return}if(!n){toast('Escribe la nota de cierre');return}it.log.push(hora()+' Cierre: '+n);act(id,'ok');od(id)}
+const NAVD=[['res','res','Resumen'],['trz','trz','Trazabilidad'],['gua','gua','Guardas'],['uni','uni','Unidades'],['per','per','Personas'],['rep','rep','Reportes'],['val','val','Valor'],['cor','cor','Correspondencia'],['cov','cov','Cobertura'],['prd','prd','Producción'],['por','por','Portafolio'],['cfg','cfg','Configuración'],['aud','aud','Auditoría']];
+let CUR='res';const VW={};
+function nv(k){
+ if(k=='aud'){audit();return}
+ if(!ROLES[ROLE].v.includes(k))k='res';
+ CUR=k;
+ const emp=COP[CI].empty&&['res','trz','gua','uni','per','rep','cor'].includes(k),dyn=emp||!['res','trz','gua'].includes(k);
+ $('#pv0').hidden=dyn||k!='res';$('#pv1').hidden=dyn||!(k=='trz'||k=='gua');$('#pvx').hidden=!dyn;
+ if(k=='trz'&&TS.d=='g')TS.d='t';if(k=='gua')TS.d='g';
+ if(emp)VW.emp();else{if(k=='trz'||k=='gua')trz();if(dyn)VW[k]()}
+ navr()}
+function navr(){$('#nv').innerHTML=NAVD.filter(n=>ROLES[ROLE].v.includes(n[0])).map(n=>`<button class="${n[0]==CUR?'on':''}" onclick="nv('${n[0]}')"><span>${ic(n[1],20)}</span><span class="lb">${n[2]}</span></button>`).join('')}
+$('#cl').onclick=()=>$('#sb').classList.toggle('col');
+function audit(k){
+ const q=($('#af').value||'').toLowerCase(),cn=COP[CI].n;
+ $('#ml').innerHTML=LOG.filter(e=>e.c==cn&&(e.ev+e.who+e.medio).toLowerCase().includes(q)).slice(0,40).map(e=>`<div class="cd row mono"><span><b>${e.ts}</b> ${e.ev}</span><span class="mu">${e.who} | ${e.medio}</span><span class="mu">hash ${e.h} | previo ${e.prev}</span></div>`).join('')||'<p class="mu">Sin eventos para esta copropiedad.</p>';
+ $('#ar').textContent='Retención configurada: '+PRIV.ret+' días. Eventos en la bitácora: '+LOG.length+'. Se conserva en este navegador.';
+ if(!k)$('#md').hidden=false}
+function vch(){let ok=true,bad=-1;
+ for(let i=LOG.length-1;i>=0;i-=1){const e=LOG[i],ex=i==LOG.length-1?e.prev:LOG[i+1].h;if(e.prev!=ex||hs(e.prev+e.ts+e.c+e.ev+e.who+e.medio)!=e.h){ok=false;bad=i}}
+ toast(ok?'Cadena íntegra: '+LOG.length+' eventos verificados':'Cadena alterada en el evento '+(LOG.length-bad)+' contado desde el inicio');audit(1)}
+function tamper(){if(LOG.length<3){toast('Aún hay pocos eventos');return}LOG[2].ev+=' (alterado)';audit(1);toast('Evento 3 modificado. Pulsa Verificar integridad.')}
+function rstLog(){LOG.length=0;ph=GEN;savLog();audit(1);toast('Bitácora reiniciada')}
+$('#mx').onclick=()=>$('#md').hidden=true;
+
+const M={tab:0,net:'on',pq:[],pexit:new Set(),sc:null,ex:[],step:1,d:{},last:null,ld:0,r:[0,0,0,0],nov:[],nc:null,nz:0,pan:false,dq:'',dz:'Todas',idok:0,pkm:0};
+const MOT=['Visita','Domicilio','Mantenimiento','Mensajería','Contratista','Vehículo'];
+const TMAP={Visita:0,Domicilio:1,'Mensajería':1,Mantenimiento:2,Contratista:2,'Vehículo':3};
+const PTS=['Punto A Acceso principal','Punto B Parqueadero','Punto C Zona social','Punto D Zona húmeda'];
+const CAT=['Ruido','Daño','Objeto sospechoso','Vehículo mal parqueado','Otro'];
+const PC=m=>CFG[TP[TMAP[m]]];
+function reg(o,medio){
+ if(M.net=='on'){enter(o,medio);toast('Registrado '+hora())}
+ else{M.pq.push({o,medio});log('Registro pendiente: '+o.n,'Guarda 1',medio+' (sin conexión)');toast('Guardado en el dispositivo');mr()}}
+function leave(id){
+ const p=PRES.find(x=>x.id==id);if(!p)return;
+ if(M.net=='on'){exitP(id,'App guarda','Guarda 1');toast('Salida registrada');mr()}
+ else{M.pexit.add(id);M.pq.push({exit:id});log('Salida pendiente: '+p.n,'Guarda 1','App guarda (sin conexión)');toast('Salida guardada en el dispositivo');mr()}}
+function flush(){
+ M.pq.forEach(q=>{if(q.exit)exitP(q.exit,'App guarda (sincronizado)','Guarda 1');else if(q.nov)addInc(q.nov.cat,q.nov.zi);else if(q.pk)addPk(q.pk.unit,q.pk.car);else if(q.req)reqAut(q.req);else enter(q.o,q.medio+' (sincronizado)')});
+ M.pq=[];M.pexit.clear()}
+function net(){
+ if(M.net=='on'){M.net='off';mr();toast('Sin conexión. Se registra en el dispositivo.')}
+ else if(M.net=='off'){M.net='sync';mr();setTimeout(()=>{flush();M.net='on';mr();toast('Sincronizado')},1400)}}
+function addInc(cat,zi){
+ const d=DD[DD.length-1],z=ZN[zi]||'Zona común';
+ d.inc+=1;if(d.zi[zi]!==undefined)d.zi[zi]+=1;if(d.g[0].on)d.g[0].inc+=1;IC.push([zi,d.dt.toDateString()]);
+ items.unshift({id:NID++,k:'Incidencia',t:cat+', '+z+' (reportada por Guarda 1)',h:hora().slice(0,5),st:'p',who:'App guarda'});ri();addTl('Novedad: '+cat+', '+z,'App guarda')}
+function scan(){M.sc='s';mr();setTimeout(()=>{if(M.sc=='s'){M.sc='r';mr()}},1400)}
+function nextExp(){return EXP.findIndex((e,i)=>!M.ex[i])}
+function allow(){const i=nextExp();M.sc='l';mr();setTimeout(()=>{M.sc=null;M.idok=0;if(i>=0){M.ex[i]=1;const e=EXP[i];reg({doc:'QR'+i,n:e.n,unit:e.unit,tipo:e.tipo},'QR')}mr()},800)}
+function expOk(i){M.ex[i]=1;const e=EXP[i];reg({doc:'EX'+i,n:e.n,unit:e.unit,tipo:e.tipo},'App guarda');mr()}
+function vdoc(el){
+ M.d.doc=el.value.replace(/\D/g,'');el.value=M.d.doc;
+ const dup=PRES.some(p=>p.doc==M.d.doc),n=M.d.doc.length,rs=PE.bloq.find(b=>b.doc==M.d.doc);
+ if(rs&&!rs.l){rs.l=1;log('Intento de ingreso de visitante restringido: '+rs.n,'Guarda 1','App guarda')}
+ $('#de').textContent=rs?'Visitante restringido: '+rs.m+'. Requiere supervisor.':dup?'Este visitante ya está dentro. Registra su salida primero.':(n&&n<6?'Mínimo 6 dígitos.':'');
+ $('#dn').disabled=n<6||dup||!!rs}
+function fill(){M.d.doc=String(1000000000+Math.floor(Math.random()*8e8));mr()}
+function bk(){const d=M.d,c=d.mot?PC(d.mot):null;if(!c)return true;const h=new Date().getHours();return !!((c.foto&&!d.ph)||(c.placa&&(d.pl||'').length<5)||((h<c.ini||h>=c.fin)&&!d.ov))}
+function chk(){const b=$('#cf');if(b)b.disabled=bk()||!!M.ld}
+function conf(){
+ if(!M.d.mot||bk())return;M.ld=1;mr();
+ setTimeout(()=>{const d=M.d,c=PC(d.mot),x={doc:d.doc,n:'Visitante '+d.doc.slice(-4),unit:d.apt,tipo:TMAP[d.mot],pl:d.pl};
+  if(c.aut){if(M.net!='on'){M.pq.push({req:x});toast('Sin conexión: la solicitud se enviará al reconectar')}else reqAut(x)}else reg(x,'Registro manual');
+  M.last=d.apt;M.d={};M.step=1;M.ld=0;mr()},900)}
+function reqAut(x){
+ const pa=Object.assign({},x,{id:'a'+Date.now(),st:'p'});PA.unshift(pa);
+ log('Autorización solicitada: '+pa.n+', '+UN(UM[pa.unit]),'Guarda 1','App guarda');
+ toast('Solicitud enviada al residente'+(INT.wa.on?' por WhatsApp':''));
+ if(pa.unit==RS.unit){RS.q.push({n:pa.n+' ('+TPS[pa.tipo]+')',pa:pa.id,st:'p'});rr()}
+ else setTimeout(()=>resolvePA(pa.id,Math.random()<.88),3500);mr();return pa}
+function resolvePA(id,ok){
+ const x=PA.find(p=>p.id==id);if(!x||x.st!='p')return;x.st=ok?'a':'r';
+ if(ok){reg(x,'Autorizado por residente');if(x.tipo==3&&INT.bar.on)toast('Barrera abierta')}
+ else{log('Ingreso rechazado por residente: '+x.n,'Residente','App residente');toast('El residente rechazó a '+x.n)}
+ if(K.s=='wt'&&K.pa==id){clearTimeout(K.tmo);K.s=ok?'done':'rej';kr()}
+ mr();rr()}
+function rd(i){if(!M.r[i]){M.r[i]=hora();log('Ronda: '+PTS[i],'Guarda 1','Marca manual');toast('Punto marcado');mr()}}
+function snd(){
+ const z=M.nz;
+ if(M.net=='on')addInc(M.nc,z);else M.pq.push({nov:{cat:M.nc,zi:z}});
+ M.nov.unshift(M.nc+', '+(ZN[z]||'Zona común')+' '+hora()+(M.net=='on'?'':' (pendiente)'));log('Novedad: '+M.nc,'Guarda 1','App guarda');M.nc=null;toast('Novedad enviada');mr()}
+function p0(){
+ if(M.sc=='s')return `<div class="cd scn"><div class="ln"></div><p>Escaneando código...</p></div>`;
+ if(M.sc=='r'||M.sc=='l'){const e=EXP[nextExp()];
+  if(!e)return `<div class="cd pn"><h2>Código sin autorización vigente</h2><p class="er">No hay una visita esperada que coincida.</p><br><button class="gh t w" onclick="M.sc=null;mr()">Volver</button></div>`;
+  return `<div class="cd pn"><h2>${e.n}</h2><p class="mu">${UN(UM[e.unit])}, ${TPS[e.tipo]}, vigente hasta 18:00</p><p class="ok">Autorización válida</p><button class="chip t w ${M.idok?'on':''}" onclick="M.idok=!M.idok;mr()">Verifiqué la identidad según el protocolo</button><br><button class="pri t w" style="margin-top:8px" onclick="allow()" ${M.sc=='l'||!M.idok?'disabled':''}>${M.sc=='l'?'Registrando...':'Permitir'}</button><button class="gh t w" style="margin-top:8px" onclick="M.sc=null;mr()">Cancelar</button></div>`}
+ const pend=PA.filter(x=>x.st=='p');
+ return `<button class="pri big w" onclick="scan()">${ic('qr',22)} Escanear QR</button><button class="cy big w" onclick="M.tab=1;mr()">${ic('visitor',22)} Registrar visitante</button><button class="gh big w" onclick="M.pkm=1;M.tab=1;M.step=2;M.d={};mr()">${ic('package',22)} Registrar paquete</button><div class="rw"><input id="cod" class="w" placeholder="Código temporal del visitante"><button class="cy t" onclick="useCode()">Validar</button></div>`+
+ (pend.length?`<h2 class="mu" style="margin-top:8px">Esperando autorización</h2>`+pend.map(x=>`<div class="cd row"><span>${x.n}<br><span class="mu">${UN(UM[x.unit])}</span></span><b class="pl wa">Pendiente</b></div>`).join(''):'')+
+ `<h2 class="mu" style="margin-top:8px">Esperados</h2>`+EXP.map((e,i)=>`<div class="cd row"><span>${e.n}<br><span class="mu">${UN(UM[e.unit])}</span></span>${M.ex[i]?'<b class="pl ok">Dentro</b>':`<button class="pri t" onclick="expOk(${i})">Permitir</button>`}</div>`).join('')+
+ `<h2 class="mu" style="margin-top:8px">Dentro ahora (${PRES.length})</h2>`+PRES.slice().sort((a,b)=>a.t0-b.t0).slice(0,8).map(p=>{const u=UM[p.unit],o=over(p),px=M.pexit.has(p.id);return `<div class="cd row"><span>${p.n}<br><span class="mu">${u?UN(u):p.unit} | ${fd(Date.now()-p.t0)}${o?' | excede':''}</span>${p.msgs&&p.msgs.length?'<br><b class="ac">'+p.msgs[p.msgs.length-1].x+'</b>':''}</span>${px?'<b class="pl wa">Salida pendiente</b>':`<button class="gh t" onclick="leave('${p.id}')">Salida</button>`}</div>`}).join('')}
+function p1(){
+ const d=M.d,s=M.step;
+ if(M.pkm)return pkv();
+ if(s==2&&!d.apt&&M.last)d.apt=M.last;
+ const dots=`<div class="dots">${[1,2,3].map(i=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>`;
+ const back=s>1?`<button class="gh t w" onclick="M.step-=1;mr()">Atrás</button>`:'';
+ if(s==1)return dots+`<h2>Documento</h2><p class="mu">Informa al visitante el aviso de privacidad. Retención: ${PRIV.ret} días.</p><input id="doc" class="w" inputmode="numeric" placeholder="Número de cédula" value="${d.doc||''}" oninput="vdoc(this)"><p id="de" class="er"></p><button class="gh t w" onclick="fill()">Escanear cédula</button><button id="dn" class="pri t w" onclick="M.step=2;mr()" ${(d.doc||'').length<6||PRES.some(p=>p.doc==d.doc)||PE.bloq.some(b=>b.doc==d.doc)?'disabled':''}>Siguiente</button>`;
+ if(s==2)return dots+`<h2>Destino</h2>${M.last&&d.apt==M.last?'<p class="mu">Último destino precargado</p>':''}<input class="w" placeholder="Buscar unidad o residente" value="${M.dq}" oninput="M.dq=this.value;dlist()"><div class="chips" style="margin-top:8px">${['Todas'].concat(ZN).map(z=>`<button class="chip t ${M.dz==z?'on':''}" onclick="M.dz='${z}';mr()">${z}</button>`).join('')}</div><div id="dl" class="chips" style="margin-top:8px"></div><button class="pri t w" style="margin-top:8px" onclick="M.step=3;mr()" ${d.apt?'':'disabled'}>Siguiente${d.apt?': '+UN(UM[d.apt]):''}</button>${back}`;
+ const c=d.mot?PC(d.mot):null,h=new Date().getHours(),fh=c&&(h<c.ini||h>=c.fin);
+ if(c&&c.placa&&INT.lpr.on&&!d.pl){const u=UM[d.apt];d.pl=(u&&u.veh[0])||'KLM482'}
+ return dots+`<h2>Motivo</h2><div class="chips">${MOT.map(m=>`<button class="chip t ${d.mot==m?'on':''}" onclick="M.d.mot='${m}';M.d.ph=0;M.d.ov=0;mr()">${m}</button>`).join('')}</div>`+
+ (c?`<p class="mu">Requisitos de ${c.n}: ${[c.foto?'foto':'',c.placa?'placa':'',c.aut?'autorización del residente':'registro directo'].filter(x=>x).join(', ')}. Horario ${c.ini}:00 a ${c.fin}:00.</p>
+ ${c.foto?`<button class="${d.ph?'cy':'gh'} t w" onclick="M.d.ph=1;mr()">${d.ph?'Foto tomada':'Tomar foto'}</button>`:''}
+ ${c.placa?`<input class="w" placeholder="Placa" value="${d.pl||''}" oninput="M.d.pl=this.value.toUpperCase();chk()">${INT.lpr.on?'<p class="mu">Placa leída por cámara</p>':''}`:''}
+ ${fh&&!d.ov?`<div class="bar">Fuera del horario permitido.</div><button class="gh t w" onclick="M.d.ov=1;log('Excepción solicitada: '+M.d.mot,'Guarda 1','App guarda');toast('Excepción solicitada al administrador');mr()">Solicitar excepción</button>`:''}`:'')+
+ `<button id="cf" class="pri t w" onclick="conf()" ${d.mot&&!M.ld&&!bk()?'':'disabled'}>${M.ld?'Registrando...':c&&c.aut?'Solicitar autorización':'Registrar ingreso'}</button>${back}`}
+function dlist(){
+ const e=$('#dl');if(!e)return;const q=M.dq.toLowerCase();
+ const l=UL.filter(u=>(M.dz=='Todas'||u.z==M.dz)&&(u.id+' '+u.res).toLowerCase().includes(q)).slice(0,12);
+ e.innerHTML=l.length?l.map(u=>`<button class="chip t ${M.d.apt==u.id?'on':''}" onclick="M.d.apt='${u.id}';mr()">${UN(u)}</button>`).join(''):'<p class="mu">Sin coincidencias.</p>'}
+function p2(){
+ const n=M.r.filter(x=>x).length;
+ return `<h2>Ronda nocturna</h2><p class="mu">${n} de 4 puntos</p><div class="bar2"><i style="width:${n*25}%"></i></div>`+
+ PTS.map((p,i)=>`<button class="cd row t w" onclick="rd(${i})"><span>${p}</span><b class="${M.r[i]?'ok':'mu'}">${M.r[i]||'Pendiente'}</b></button>`).join('')}
+function p3(){
+ return `<h2>Nueva novedad</h2><div class="chips">${CAT.map(c=>`<button class="chip t ${M.nc==c?'on':''}" onclick="M.nc='${c}';mr()">${c}</button>`).join('')}</div><p class="mu" style="margin-top:8px">Zona</p><div class="chips">${ZN.map((z,i)=>`<button class="chip t ${M.nz==i?'on':''}" onclick="M.nz=${i};mr()">${z}</button>`).join('')}</div><button class="pri t w" style="margin-top:8px" onclick="snd()" ${M.nc?'':'disabled'}>Enviar</button><h2 class="mu" style="margin-top:8px">Enviadas</h2>`+
+ (M.nov.length?M.nov.map(n=>`<div class="cd row">${n}</div>`).join(''):'<p class="mu">Sin novedades.</p>')}
+function mr(){
+ if(COP[CI].empty){$('#ms').innerHTML='';$('#mc').innerHTML='<div class="cd pn"><h2>Portería sin configurar</h2><p class="mu">Importa las unidades de la copropiedad desde el dashboard para activar la app.</p></div>';$('#mb').innerHTML='';return}
+ const n=M.net,s=n=='on'?['ok','En línea']:n=='off'?['wa','Sin conexión']:['ac','Sincronizando'];
+ $('#ms').innerHTML=`<div class="ms"><span class="mu">Turno 06:00 a 14:00</span><button class="chip t ${s[0]}" onclick="net()" aria-label="Alternar conexión"><i class="dot"></i>${s[1]}</button></div>`+
+ (n=='off'?`<div class="bar">Modo sin conexión. Registrando en el dispositivo. ${M.pq.length} pendientes.</div>`:n=='sync'?`<div class="bar">Sincronizando ${M.pq.length} eventos...</div>`:'')+
+ (M.pan?'<div class="pan">Reporte enviado</div>':'');
+ $('#mc').innerHTML=[p0,p1,p2,p3][M.tab]();
+ $('#mb').innerHTML=['Portería','Visitantes','Rondas','Novedades'].map((x,i)=>`<button class="${M.tab==i?'on':''}" onclick="M.tab=${i};mr()">${ic(['door','visitor','round','alert'][i],22)}${x}</button>`).join('');
+ if(M.tab==1&&(M.step==2||M.pkm))dlist()}
+
+const L={
+ es:{h:'Bienvenido. ¿Qué necesitas?',o:['Tengo un código QR','Visito a alguien','Entrego un paquete','Servicio o mantenimiento'],ap:'Número de apartamento',av:'Avisar',bo:'Borrar',vol:'Volver',sc:'Acerque el código al recuadro',wt:'Avisando al residente...',nf:'Apartamento no encontrado',hp:'Ayuda',cs:'Tratamiento de datos',ct:'Registramos su nombre, documento y hora de ingreso solo para controlar el acceso. Se conservan por el tiempo que defina la copropiedad y puede pedir su consulta o supresión en la administración.',ac:'Acepto y continuar',cn:'Cancelar',k1:'Apartamento',k2:'Casa',rj:'No autorizado. Diríjase a la portería.',tm:'Sin respuesta del residente. Un guarda lo atenderá.',ok3:'Autorizado por el residente. Puede pasar.',ok2:['Código válido. Puede pasar a la torre 2.','Residente notificado. Espere en la portería.','Paquete notificado. Un guarda lo recibe.','Servicio notificado a administración.']},
+ en:{h:'Welcome. What do you need?',o:['I have a QR code','I am visiting someone','I am delivering a package','Service or maintenance'],ap:'Apartment number',av:'Notify',bo:'Delete',vol:'Back',sc:'Hold the code inside the frame',wt:'Notifying the resident...',nf:'Apartment not found',hp:'Help',cs:'Data processing',ct:'We record your name, ID and entry time only to control access. They are kept for the period the property defines, and you may request access or deletion from the administration.',ac:'I agree and continue',cn:'Cancel',k1:'Apartment',k2:'House',rj:'Not authorized. Please go to the front desk.',tm:'No answer from the resident. A guard will assist you.',ok3:'Authorized by the resident. You may enter.',ok2:['Valid code. You may enter through tower 2.','Resident notified. Please wait at the desk.','Package notified. A guard will receive it.','Service notified to administration.']}};
+const R={'302':'L. Gómez','504':'M. Rojas','702':'C. Pardo','1104':'A. Díaz'};
+const KC=[['#4338CA','#6D28D9'],['#0C4A6E','#075985'],['#064E3B','#065F46'],['#78350F','#92400E']];
+let K={lang:'es',s:'home',o:0,apt:'',t:null,kind:'a',cons:0};
+function kl(x){K.lang=x;kr()}
+function kgo(i){K.o=i;K.apt='';if(!K.cons){K.s='cs';kr();return}kgo2()}
+function kgo2(){const i=K.o;if(i==0){K.s='qr';kr();setTimeout(()=>{if(K.s=='qr')kdone(0)},1800)}else{K.s='kp';kr()}}
+function kacc(){K.cons=1;kgo2()}
+function kdone(i){
+ K.s='done';
+ if(i==0){const e=EXP[0],unit=e?e.unit:(UL[0]||{}).id;if(unit&&UM[unit])enter({doc:'KQ'+Date.now(),n:e?e.n:'Visitante',unit,tipo:0},'Kiosco')}
+ kr()}
+function kk(c){if(c=='b')K.apt=K.apt.slice(0,-1);else if(K.apt.length<4)K.apt+=c;kr()}
+function ksend(){
+ if(!UM[K.apt])return;
+ if(K.o==2){addPk(K.apt,'Mensajería (kiosco)');kdone(2);return}
+ const tipo=K.o==3?2:0,c=CFG[TP[tipo]],x={doc:'K'+Date.now(),n:'Visitante kiosco',unit:K.apt,tipo};
+ if(!c.aut){enter(x,'Kiosco');K.s='done';kr();return}
+ const pa=reqAut(x);K.pa=pa.id;K.s='wt';kr();clearTimeout(K.tmo);
+ K.tmo=setTimeout(()=>{const y=PA.find(q=>q.id==K.pa);if(K.s=='wt'&&y&&y.st=='p'){y.st='t';log('Autorización sin respuesta: '+y.n,'Sistema','Kiosco');K.s='tmo';kr()}},TM.esp*1000)}
+function kr(){
+ clearTimeout(K.t);const l=L[K.lang];let b='';
+ if(SYS.pow||SYS.dev||COP[CI].empty){const e=COP[CI].empty;$('#ks').innerHTML=`<div class="rw"><b class="logo">NEXORA</b></div><div class="kd ${SYS.pow?'wa':'er'}">${e?'Terminal sin configurar':SYS.pow?'Modo contingencia':'Terminal fuera de servicio'}</div><div class="kk">${e?'Importa las unidades desde el dashboard.':SYS.pow?'Energía de respaldo activa. Un guarda registrará su ingreso de forma manual.':'Por favor diríjase a la portería.'}</div><div></div>`;return}
+ if(K.s=='home')b=`<h1 style="text-align:center">${l.h}</h1><div class="kg">${l.o.map((o,i)=>`<button class="cd kc" style="background:linear-gradient(135deg,${KC[i][0]},${KC[i][1]});border:0;color:#fff" onclick="kgo(${i})"><span class="ki">${ic(['qr','visitor','package','tool'][i],44)}</span>${o}</button>`).join('')}</div>`;
+ else if(K.s=='qr')b=`<div class="kd">${l.sc}</div><div class="cd scn" style="min-height:240px"><div class="ln"></div></div>`;
+ else if(K.s=='cs')b=`<div class="kd">${l.cs}</div><div class="kk">${l.ct}</div><div class="kg"><button class="cd kc" style="min-height:90px" onclick="kacc()">${l.ac}</button><button class="cd kc" style="min-height:90px" onclick="K.s='home';kr()">${l.cn}</button></div>`;
+ else if(K.s=='kp'){
+  const hasA=UL.some(u=>u.id[0]!='C'),hasC=UL.some(u=>u.id[0]=='C'),sel=UM[K.apt];
+  const tog=hasA&&hasC?`<div class="chips" style="justify-content:center"><button class="chip t ${K.kind=='a'?'on':''}" onclick="K.kind='a';K.apt='';kr()">${l.k1}</button><button class="chip t ${K.kind=='c'?'on':''}" onclick="K.kind='c';K.apt='';kr()">${l.k2}</button></div>`:'';
+  const pad=K.kind=='c'?`<div class="kp" style="grid-template-columns:repeat(4,1fr)">${UL.filter(u=>u.id[0]=='C').slice(0,24).map(u=>`<button class="cd ${K.apt==u.id?'pri':''}" onclick="K.apt='${u.id}';kr()">${u.id.slice(1)}</button>`).join('')}</div>`:`<div class="kd">${K.apt||'_'}</div><div class="kp">${['1','2','3','4','5','6','7','8','9'].map(k=>`<button class="cd" onclick="kk('${k}')">${k}</button>`).join('')}<button class="cd" onclick="kk('b')">${l.bo}</button><button class="cd" onclick="kk('0')">0</button><button class="pri" onclick="ksend()" ${sel?'':'disabled'}>${l.av}</button></div>`;
+  b=`${tog}<div class="kk">${K.kind=='c'?l.k2:l.ap}</div>${pad}<div class="kk ${sel?'ok':'er'}">${sel?UN(sel)+': '+R[K.apt]:(K.apt&&K.kind=='a'?l.nf:'&nbsp;')}</div>${K.kind=='c'?`<button class="pri t" style="margin:0 auto" onclick="ksend()" ${sel?'':'disabled'}>${l.av}</button>`:''}${INT.cit.on?`<button class="gh t" style="margin:0 auto" onclick="toast('Llamando al residente (simulación)')">Llamar al residente</button>`:''}`}
+ else if(K.s=='wt')b=`<div class="spn"></div><div class="kk">${l.wt}</div>`;
+ else if(K.s=='rej')b=`<div class="kd er">${l.rj}</div>`;
+ else if(K.s=='tmo')b=`<div class="kd wa">${l.tm}</div>`;
+ else b=`<div class="kd ok">${(K.o==1||K.o==3)?l.ok3:l.ok2[K.o]}</div>`;
+ $('#ks').innerHTML=`<div class="rw"><b class="logo">NEXORA</b><div class="acts"><button class="chip t ${K.lang=='es'?'on':''}" onclick="kl('es')">ES</button><button class="chip t ${K.lang=='en'?'on':''}" onclick="kl('en')">EN</button></div></div>${b}<div class="rw"><button class="gh t" onclick="toast('${l.hp}: portería notificada')">${l.hp}</button>${K.s!='home'?`<button class="gh t" onclick="K.s='home';K.apt='';kr()">${l.vol}</button>`:''}</div>`;
+ if(K.s!='home')K.t=setTimeout(()=>{K.s='home';K.apt='';K.cons=0;kr()},K.s=='done'?6000:45000)}
+
+let pact=false,praf,pst=0,pi,pc=30;
+function pstart(){
+ if(pact)return;pst=performance.now();
+ const f=t=>{const p=Math.min((t-pst)/1500,1);$('#pw').style.background=`conic-gradient(#fff ${p*100}%,rgba(255,255,255,.25) 0)`;
+  if(p>=1)panic();else praf=requestAnimationFrame(f)};
+ praf=requestAnimationFrame(f)}
+function pstop(){cancelAnimationFrame(praf);if(!pact)$('#pw').style.background='transparent'}
+function panic(){
+ pact=true;pc=TM.esc;M.pan=true;mr();
+ log(TM.sim?'SIMULACRO de pánico':'ALERTA DE PÁNICO','Guarda 1','Botón de pánico');
+ $('#bn').hidden=false;$('#bf').hidden=true;$('#bt').textContent=(TM.sim?'SIMULACRO. ':'')+'Guarda 1, portería principal (GPS ±8 m), '+hora()+'. Escalamiento en';
+ $('#ba').textContent='Atender';$('#ba').dataset.s='0';$('#bc').textContent=fm(TM.esc);
+ clearInterval(pi);
+ pi=setInterval(()=>{pc-=1;$('#bc').textContent=fm(Math.max(pc,0));
+  if(pc<=0){clearInterval(pi);$('#bt').textContent=TM.sim?'Simulacro: no se notifica a terceros.':'Escalada por app, SMS y llamada al gerente de seguridad y a monitoreo.';$('#bc').textContent='';log(TM.sim?'Simulacro escalado sin notificar':'Alerta escalada','Sistema','Escalamiento automático')}},1000)}
+$('#ba').onclick=()=>{
+ if($('#ba').dataset.s=='0'){clearInterval(pi);$('#bt').textContent='Atendida, '+hora()+'. Clasifica el cierre.';$('#bc').textContent='';$('#ba').textContent='Emergencia confirmada';$('#ba').dataset.s='1';$('#bf').hidden=false;log('Alerta atendida','Supervisor','Panel web')}
+ else pclose('Emergencia confirmada')};
+$('#bf').onclick=()=>pclose('Falsa alarma');
+function pclose(k){$('#bn').hidden=true;pact=false;M.pan=false;$('#bf').hidden=true;$('#pw').style.background='transparent';mr();log('Alerta cerrada: '+k,'Supervisor','Panel web');toast('Alerta cerrada: '+k)};
+document.addEventListener('keydown',e=>{if(e.key=='Escape'){$('#md').hidden=true;$('#gm').hidden=true;$('#dr').classList.remove('open')}});
+const pb=$('#pb');
+pb.addEventListener('pointerdown',pstart);
+['pointerup','pointerleave','pointercancel'].forEach(e=>pb.addEventListener(e,pstop));
+pb.addEventListener('keydown',e=>{if((e.key==' '||e.key=='Enter')&&!e.repeat){e.preventDefault();pstart()}});
+pb.addEventListener('keyup',pstop);
+
+let sd=7;function rnd(){sd=(sd*16807)%2147483647;return sd/2147483647}
+const TS={p:'7d',d:'t',m:'ing',c:1};
+const ML={rr:['Respuesta de residentes',' s'],ing:['Ingresos',''],inc:['Incidentes',''],resp:['Respuesta media',' min'],ron:['Rondas cumplidas','%'],pr:['Protocolo cumplido','%']};
+const MK=['ing','inc','resp','ron','pr','rr'];
+const PERS={'7d':[7,1,'Semana'],'30d':[30,1,'Mes'],'90d':[90,7,'Trimestre'],ano:[365,30,'Año']};
+const fmt=(m,v)=>v.toLocaleString('es-CO')+ML[m][1];
+function ses(p){const n=PERS[p][0],L=DD.length;return [DD.slice(L-n),DD.slice(L-2*n,L-n)]}
+function mv(m,ds){if(!ds.length)return 0;const s=k=>ds.reduce((a,d)=>a+d[k],0);return adj(m,m=='ing'||m=='inc'?s(m):m=='resp'?+(s('resp')/ds.length).toFixed(1):Math.round(s(m)/ds.length))}
+function gv(m,ds,k){const a=ds.filter(d=>d.g[k].on);if(!a.length)return 0;const s=f=>a.reduce((x,d)=>x+d.g[k][f],0);return adj(m,m=='ing'||m=='inc'?s(m):m=='resp'?+(s('resp')/a.length).toFixed(1):Math.round(s(m)/a.length))}
+function tv(k,ds){return adj('ing',ds.reduce((a,d)=>a+d.t[k],0))}
+function zv(m,k,ds){return adj(m=='inc'?'inc':'ing',ds.reduce((a,d)=>a+(m=='inc'?d.zi[k]:d.z[k]),0))}
+function dl(c,p,m){if(!p)return '<span class="mu">sin base</span>';const d=(c-p)/p*100,good=m=='inc'||m=='resp'||m=='rr'?d<=0:d>=0,cl=m=='ing'?'ac':good?'ok':'er';return `<b class="${cl}">${d>=0?'▲':'▼'} ${Math.abs(d).toFixed(1)}%</b>`}
+function chart(L,C,P){
+ const W=640,H=250,pad=28,n=L.length,mx=Math.max(1,...C,...(TS.c?P:[0])),gw=(W-pad)/n,bw=Math.max(3,gw*(TS.c?.36:.6));
+ let o=`<svg class="mu" viewBox="0 0 ${W} ${H}" style="width:100%;height:auto">`;
+ for(let g=0;g<=3;g+=1){const y=10+200*g/3;o+=`<line x1="${pad}" x2="${W}" y1="${y}" y2="${y}" stroke="currentColor" opacity=".15"/><text x="0" y="${y+3}" font-size="9" fill="currentColor">${Math.round(mx*(1-g/3))}</text>`}
+ L.forEach((l,i)=>{const x=pad+i*gw+gw*.1,hc=200*C[i]/mx;
+  o+=`<rect x="${x}" y="${210-hc}" width="${bw}" height="${hc}" rx="2" style="fill:var(--b1)"/>`;
+  if(TS.c){const hp=200*P[i]/mx;o+=`<rect x="${x+bw+1}" y="${210-hp}" width="${bw}" height="${hp}" rx="2" style="fill:var(--b2)"/>`}
+  if(n<=14||i%Math.ceil(n/10)==0)o+=`<text x="${x}" y="${226}" font-size="9" fill="currentColor" transform="rotate(${n>7?35:0} ${x} 226)">${l}</text>`});
+ return o+'</svg><p class="mu"><span class="ac">■</span> Actual'+(TS.c?' &nbsp; <span style="color:var(--b2)">■</span> Período anterior':'')+'</p>'}
+function trz(){
+ const m=TS.m,[cur,prev]=ses(TS.p),bs=PERS[TS.p][1];let L=[],C=[],P=[];
+ if(TS.d=='t'){const n=Math.floor(cur.length/bs);for(let i=0;i<n;i+=1){const a=cur.slice(i*bs,(i+1)*bs),b=prev.slice(i*bs,(i+1)*bs);
+  L.push(bs==1?a[0].dt.toLocaleDateString('es-CO',{day:'2-digit',month:'short'}):bs==7?'S'+(i+1):a[0].dt.toLocaleDateString('es-CO',{month:'short'}));C.push(mv(m,a));P.push(mv(m,b))}}
+ else if(TS.d=='g'){GN.forEach((g,k)=>{L.push(g);C.push(gv(m,cur,k));P.push(gv(m,prev,k))})}
+ else if(TS.d=='z'){ZN.forEach((z,k)=>{L.push(z);C.push(zv(m,k,cur));P.push(zv(m,k,prev))})}
+ else{TP.forEach((t,k)=>{L.push(t);C.push(tv(k,cur));P.push(tv(k,prev))})}
+ if(TS.d!='t'){const o=L.map((_,i)=>i).sort((a,b)=>C[b]-C[a]);L=o.map(i=>L[i]);const c2=o.map(i=>C[i]),p2=o.map(i=>P[i]);C=c2;P=p2}
+ const u=bs==1?'día':bs==7?'semana':'mes';TRW={L:L.slice(),C:C.slice(),P:P.slice(),m,p:TS.p,d:TS.d,c:TS.c};
+ $('#fp').innerHTML=Object.keys(PERS).map(k=>`<button class="chip t ${TS.p==k?'on':''}" onclick="TS.p='${k}';trz()">${PERS[k][2]}</button>`).join('')+`<button class="chip t ${TS.c?'on':''}" onclick="TS.c=TS.c?0:1;trz()">Comparar con período anterior</button>`;
+ $('#fd').innerHTML=[['t','Por '+u],['g','Por guarda'],['z','Por torre o zona'],['tp','Por tipo de ingreso']].map(d=>`<button class="chip t ${TS.d==d[0]?'on':''}" onclick="TS.d='${d[0]}';if(TS.d=='tp'||TS.d=='z'&&TS.m!='inc'||TS.d=='g'&&TS.m=='rr')TS.m='ing';trz()">${d[1]}</button>`).join('');
+ $('#tk').innerHTML=MK.map((k,i)=>{const c=mv(k,cur),p=mv(k,prev);return `<button class="cd pn m${i%5} ${k==m?'sel':''}" style="text-align:left;display:block" onclick="TS.m='${k}';if((TS.d=='tp'&&'${k}'!='ing')||(TS.d=='z'&&'${k}'!='ing'&&'${k}'!='inc')||(TS.d=='g'&&'${k}'=='rr'))TS.d='t';trz()"><span class="mu">${ML[k][0]}</span><div class="num">${fmt(k,c)}</div>${TS.c?dl(c,p,k):'<span class="mu">&nbsp;</span>'}</button>`}).join('');
+ $('#ct').textContent=ML[m][0]+': '+PERS[TS.p][2].toLowerCase()+(TS.c?' frente al período anterior':'');
+ $('#ch').innerHTML=chart(L,C,P);
+ $('#tb2').innerHTML='<table><tr class="mu"><th>'+(TS.d=='g'?'Guarda':TS.d=='tp'?'Tipo':TS.d=='z'?'Torre o zona':'Período')+'</th><th>Actual</th>'+(TS.c?'<th>Anterior</th><th>Cambio</th>':'')+'</tr>'+L.map((l,i)=>`<tr><td>${l}</td><td><b>${fmt(m,C[i])}</b></td>${TS.c?`<td class="mu">${fmt(m,P[i])}</td><td>${dl(C[i],P[i],m)}</td>`:''}</tr>`).join('')+'</table>'}
+function hm(){
+ const A=Array.from({length:7},()=>Array(24).fill(0));
+ DD.slice(-90).forEach(d=>{const w=d.dt.getDay();for(let k=0;k<4;k+=1)for(let h=0;h<24;h+=1)A[w][h]+=d.t[k]*HPT[k][h]/HPS[k]});
+ const mx=Math.max(1,...A.flat()),DN=['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+ let o='<div class="hm"><span></span>'+Array.from({length:24},(_,h)=>`<span class="mu">${h%3==0?h:''}</span>`).join('');
+ [1,2,3,4,5,6,0].forEach(w=>{o+=`<span class="mu">${DN[w]}</span>`+A[w].map(v=>`<i title="${Math.round(v)} ingresos" style="background:rgba(129,140,248,${(.08+.92*v/mx).toFixed(2)})"></i>`).join('')});
+ $('#hm').innerHTML=o+'</div>'}
+function rr(){
+ const h=$('#rh');
+ if(COP[CI].empty||!RS.unit){if(h)h.textContent='';$('#rc').innerHTML='<div class="cd pn"><h2>Sin datos</h2><p class="mu">La copropiedad aún no tiene unidades cargadas.</p></div>';return}
+ const u=UM[RS.unit],q=RS.q;if(h)h.textContent='Residente, '+UN(u);
+ $('#rc').innerHTML=`<div class="cd pn"><span class="mu">Portería</span><h2>Solicitudes de ingreso</h2>${q.length?q.map((x,i)=>`<div class="row"><span>${x.n}</span>${x.st=='p'?`<span class="acts"><button class="pri t" onclick="rv(${i},1)">Autorizar</button><button class="gh t" onclick="rv(${i},0)">Rechazar</button></span>`:`<b class="pl ${x.st==1?'ok':'er'}">${x.st==1?'Autorizada':'Rechazada'}</b>`}</div>`).join(''):'<p class="mu">No hay solicitudes. Cuando la portería registre una visita para tu unidad, aparecerá aquí.</p>'}</div>
+ <div class="cd pn"><h2>Código temporal</h2>${RS.code?`<div class="kd ac">${RS.code}</div><p class="mu">Válido por 4 horas</p>`:'<p class="mu">Para invitados sin llamada previa.</p>'}<br><button class="cy t w" onclick="rcode()">Generar código</button></div>
+ <div class="cd pn"><h2>Correspondencia</h2>${PK.filter(x=>x.unit==RS.unit&&x.st=='p').map(x=>`<div class="row"><span>${x.carrier}<br><span class="mu">en portería hace ${fd(Date.now()-x.t0)}</span></span><button class="pri t" onclick="rpk('${x.id}')">Recibí</button></div>`).join('')||'<b class="pl ok">Sin pendientes</b>'}${PK.filter(x=>x.unit==RS.unit&&x.st=='e').slice(-2).map(x=>`<p class="mu">Entregado. Constancia ${x.code}</p>`).join('')}</div>`}
+function rv(i,a){const x=RS.q[i];x.st=a;resolvePA(x.pa,!!a)}
+function rcode(){RS.code=Math.random().toString(36).slice(2,8).toUpperCase();CODES.push({code:RS.code,unit:RS.unit,t:Date.now(),used:0});log('Código temporal generado','Residente '+RS.unit,'App residente');rr()}
+function rpk(id){deliverPk(id,'Residente '+UM[RS.unit].res);toast('Entrega registrada');rr();mt()}
+
+/* ===== Estado por copropiedad ===== */
+let DD=[],UL=[],UM={},GN=[],ZN=[],items=[],TL=[],PE={t:'bloq',bloq:[]},CFG={},RS={q:[],code:null,unit:null},PRES=[],PA=[],EXP=[],CODES=[],BP=[],IC=[],PK=[];
+const N=730,fin=new Date();fin.setHours(0,0,0,0);
+const TP=['Visitante','Domiciliario','Contratista','Vehículo'];
+const TPS=['Visita','Domicilio','Contratista','Vehículo'];
+const HPT=[[1,1,1,1,1,1,2,3,4,5,6,6,6,7,8,9,10,10,9,8,6,4,2,1],[1,1,1,1,1,1,2,3,4,5,8,10,9,6,5,5,6,8,10,10,8,5,3,1],[0,0,0,0,0,1,4,10,10,9,9,6,3,5,9,9,8,3,0,0,0,0,0,0],[1,1,1,1,2,4,7,9,8,6,5,5,5,5,5,6,8,10,9,6,4,3,2,1]];
+const HPS=HPT.map(a=>a.reduce((x,y)=>x+y));
+const GPOOL=[['Carlos Mena','Luz M. Cortés','Jhon Ríos','Andrés Soto','Paola Vélez','Diego Cano'],['Mauricio Lara','Yuliana Peña','Edwin Ocampo','Sandra Gil','Héctor Rúa','Tatiana Mora'],['Iván Cardona','Gloria Ruiz','Fabián Soto','Lina Zapata','Óscar Mejía','Daniela Arias']];
+const LAY=[[{n:'Torre 1',k:'a',f:[1,6]},{n:'Torre 2',k:'a',f:[7,12]},{n:'Casas',k:'c',c:[1,8]}],[{n:'Manzana A',k:'c',c:[1,10]},{n:'Manzana B',k:'c',c:[11,20]}],[{n:'Torre A',k:'a',f:[1,5]},{n:'Torre B',k:'a',f:[6,10]},{n:'Torre C',k:'a',f:[11,15]}]];
+const COP=[{n:'Altos del Río',tp:'Estándar',gi:0,lay:LAY[0]},{n:'Parques de la Colina',tp:'Estricto',gi:1,lay:LAY[1]},{n:'Torres del Lago',tp:'Flexible',gi:2,lay:LAY[2]}];
+const ST=[];let CI=0,ROLE='Administrador';
+const ALLT=['v-dash','v-mob','v-kio','v-res'];
+const ROLES={'Administrador':{v:['res','trz','gua','uni','cor','per','rep','val','cfg','cov','prd','aud'],act:1,edit:1,multi:0,tabs:ALLT,pan:1},'Supervisor':{v:['res','trz','gua','uni','cor','per','rep','aud'],act:1,edit:0,multi:0,tabs:ALLT,pan:1},'Empresa de vigilancia':{v:['res','trz','gua','uni','cor','rep','por','cov','prd','aud'],act:1,edit:0,multi:1,tabs:ALLT,pan:1},'Consejo':{v:['res','trz','uni','rep','val'],act:0,edit:0,multi:0,tabs:['v-dash'],pan:0}};
+const ED=()=>ROLES[ROLE].edit;
+const TM={esc:30,sim:0,esp:60,ses:10},PRIV={ret:90};
+const fm=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+const fd=ms=>{const m=Math.round(ms/60000);return m>=60?Math.floor(m/60)+' h '+m%60+' min':m+' min'};
+function adj(m,v){return v}
+const pk=a=>a[Math.floor(rnd()*a.length)];
+const FN=['Marta','Luis','Carlos','Ana','Jorge','Paula','Diana','Camilo','Sofía','Andrés','Laura','Felipe','Mónica','Ricardo','Natalia','Sergio'],SN=['Rojas','Gómez','Pardo','Díaz','Vargas','Mejía','Torres','Castro','Ruiz','Ortiz','Salazar','Herrera'];
+const pn=()=>pk(FN)+' '+pk(SN);
+const plate=()=>String.fromCharCode(65+Math.floor(rnd()*26),65+Math.floor(rnd()*26),65+Math.floor(rnd()*26))+Math.floor(100+rnd()*900);
+const UN=u=>u.id[0]=='C'?'Casa '+u.id.slice(1):'Apto '+u.id;
+const over=p=>(Date.now()-p.t0)/60000>CFG[TP[p.tipo]].max;
+function tplObj(n){
+ const b={Visitante:{foto:0,placa:0,aut:1,ini:0,fin:24,max:240},Domiciliario:{foto:0,placa:0,aut:1,ini:0,fin:24,max:20},Contratista:{foto:1,placa:0,aut:1,ini:7,fin:17,max:480},'Vehículo':{foto:0,placa:1,aut:1,ini:0,fin:24,max:240}};
+ if(n=='Estricto'){Object.assign(b.Visitante,{foto:1,ini:6,fin:22,max:180});Object.assign(b.Domiciliario,{foto:1,ini:6,fin:23,max:15});Object.assign(b.Contratista,{ini:8,max:420});Object.assign(b['Vehículo'],{foto:1})}
+ else if(n=='Flexible'){Object.assign(b.Domiciliario,{aut:0,max:30});Object.assign(b.Contratista,{foto:0,ini:6,fin:19});Object.assign(b['Vehículo'],{aut:0})}
+ Object.keys(b).forEach(k=>{b[k].n=k});return b}
+function mkU(ul,um,id,z,zi){
+ const u={id,z,zi,res:pn(),w:.5+rnd()*1.5,paq:rnd()<.25?1+Math.floor(rnd()*2):0,veh:Array.from({length:Math.floor(rnd()*3)},()=>plate()),frec:Array.from({length:Math.floor(rnd()*4)},()=>pn()),aut:Array.from({length:1+Math.floor(rnd()*2)},()=>pn()),last:Math.floor(1+rnd()*40),c:new Uint8Array(N*4),i:new Uint8Array(N)};
+ ul.push(u);um[id]=u}
+function build(ci){
+ const c=COP[ci];sd=7+ci*101;
+ const gn=GPOOL[c.gi%3],ul=[],um={},zn=c.lay.map(z=>z.n),dd=[];
+ c.lay.forEach((z,zi)=>{if(z.k=='a'){for(let f=z.f[0];f<=z.f[1];f+=1)for(let k=1;k<=4;k+=1)mkU(ul,um,String(f*100+k),z.n,zi)}else for(let q=z.c[0];q<=z.c[1];q+=1)mkU(ul,um,'C'+q,z.n,zi)});
+ if(ci==0)[['504','Marta Rojas'],['302','Luis Gómez'],['702','Carlos Pardo'],['1104','Andrés Díaz']].forEach(a=>{if(um[a[0]])um[a[0]].res=a[1]});
+ const BASE=[1.1,1.3,.25,.4];
+ for(let d=0;d<N;d+=1){
+  const dt=new Date(fin.getTime()-(N-1-d)*864e5),wk=dt.getDay(),we=wk==0||wk==6,tr=d/N;
+  const mod=[we?1.5:1,we?1.35:1,we?.15:1,we?.8:1],t=[0,0,0,0],z=zn.map(()=>0),zi=zn.map(()=>0);let inc=0;
+  ul.forEach(u=>{
+   for(let k=0;k<4;k+=1){const lam=BASE[k]*u.w*mod[k]*(1+tr*.08);let n=Math.floor(lam);if(rnd()<lam-n)n+=1;u.c[d*4+k]=n;t[k]+=n;z[u.zi]+=n}
+   if(rnd()<.012*u.w*(1.6-tr*.3)){u.i[d]=1;inc+=1;zi[u.zi]+=1}});
+  const ing=t[0]+t[1]+t[2]+t[3],on=gn.map((x,k)=>(d+k)%6<4);if(d==N-1)on[0]=true;
+  const oi=on.map((o,k)=>o?k:-1).filter(k=>k>=0),wt=oi.map(k=>(k==0?1.15:1)*(.7+rnd()*.6)),ws=wt.reduce((a,b)=>a+b);
+  const g=gn.map(()=>({on:false,ing:0,inc:0,resp:0,ron:0,pr:0}));let li=ing,lc=inc;
+  oi.forEach((k,m)=>{const last=m==oi.length-1,a=last?li:Math.floor(ing*wt[m]/ws),b=last?lc:Math.floor(inc*wt[m]/ws);li-=a;lc-=b;
+   g[k]={on:true,ing:a,inc:b,resp:+(1.4+rnd()*2.2+(k==3?.9:0)-tr*.4).toFixed(1),ron:Math.round(78+rnd()*22-(k==2?9:0)),pr:Math.round(86+rnd()*13-(k==2?6:0))}});
+  const av=f=>oi.reduce((a,k)=>a+g[k][f],0)/oi.length;
+  dd.push({dt,ing,t,inc,g,z,zi,rr:Math.round(35+rnd()*55-tr*8),resp:+av('resp').toFixed(1),ron:Math.round(av('ron')),pr:Math.round(av('pr'))})}
+ const ru=()=>ul[Math.floor(rnd()*ul.length)],tps=[0,0,1,1,1,2,3];
+ const pres=Array.from({length:10},(_,k)=>{const u=ru(),tp=tps[Math.floor(rnd()*7)];return {id:'p'+k,doc:String(1e9+Math.floor(rnd()*9e8)),n:pn(),unit:u.id,tipo:tp,t0:Date.now()-Math.round((tp==1?3+rnd()*40:20+rnd()*200)*60000),via:'Portería'}});
+ const its=[0,1].map(k=>{const u=ru(),n=pn(),tp=k?0:2;return {id:k+1,k:'Ingreso',t:TPS[tp]+' '+n+', '+UN(u),h:'14:2'+(k+1),st:'p',who:k?'Kiosco':'Portería',doc:String(1e9+Math.floor(rnd()*9e8)),n,unit:u.id,tipo:tp}});
+ its.push({id:3,k:'Incidencia',t:'Vehículo mal parqueado, '+zn[0],h:'14:10',st:'p',who:'Guarda 2'},{id:4,k:'Incidencia',t:'Puerta peatonal sin cierre, '+zn[zn.length-1],h:'13:58',st:'p',who:'Ronda'});
+ const exp=Array.from({length:3},(_,k)=>{const u=ru();return {n:pn(),unit:u.id,tipo:k==2?1:0}});
+ const ru0=ci==0?'504':ul[4].id;if(!um[ru0].paq)um[ru0].paq=1;
+ const pks=[];ul.forEach(u=>{for(let k=0;k<u.paq;k+=1)pks.push({id:'k'+u.id+k,unit:u.id,carrier:pk(['Servientrega','Coordinadora','Rappi','Otro']),t0:Date.now()-Math.round((1+rnd()*70)*3600000),st:'p'})});
+ const nm=pn();
+ return {DD:dd,UL:ul,UM:um,GN:gn,ZN:zn,items:its,PRES:pres,EXP:exp,CFG:tplObj(c.tp),
+  TL:[{h:'14:18:02',txt:'Ingreso: '+exp[0].n,medio:'QR'},{h:'14:15:40',txt:'Ingreso: '+exp[2].n,medio:'App guarda'}],
+  PE:{t:'bloq',bloq:ci==0?[{n:'Jorge Beltrán',doc:'1012345678',m:'Ingreso conflictivo',f:'14 ago 2026'}]:[]},
+  RS:{q:[{n:nm+' (Visita)',pa:1,st:'p'}],code:null,unit:ru0},PA:[{id:1,n:nm,doc:'1098765432',unit:ru0,tipo:0,st:'p'}],CODES:[],BP:[],IC:[],PK:pks}}
+function emptyState(i){return {DD:[],UL:[],UM:{},GN:[],ZN:[],items:[],TL:[],PE:{t:'bloq',bloq:[]},CFG:tplObj(COP[i].tp),RS:{q:[],code:null,unit:null},PRES:[],PA:[],EXP:[],CODES:[],BP:[],IC:[],PK:[]}}
+function loadCop(i){
+ CI=i;let s=ST[i];if(!s){s=ST[i]=COP[i].empty?emptyState(i):build(i);applyP(i,s)}
+ ({DD,UL,UM,GN,ZN,items,TL,PE,CFG,RS,PRES,PA,EXP,CODES,BP,IC,PK}=s);
+ Object.keys(R).forEach(k=>delete R[k]);UL.forEach(u=>{const p=u.res.split(' ');R[u.id]=p[0][0]+'. '+p[1]});
+ Object.assign(M,{idok:0,pkm:0,tab:0,step:1,d:{},sc:null,ex:[],r:[0,0,0,0],nov:[],pq:[],pexit:new Set(),dq:'',dz:'Todas',nz:0,ld:0,nc:null});
+ K.s='home';K.apt='';K.cons=0;K.kind=UL.some(u=>u.id[0]!='C')?'a':'c';U.f='Todas';U.q=''}
+function refreshAll(){rtl();ri();mt();rin();rr();mr();kr();hm()}
+function bump(id,k,dlt){const u=UM[id];if(!u||!DD.length)return;const d=DD[DD.length-1],v=dlt||1;u.c[(N-1)*4+k]+=v;d.t[k]+=v;d.ing+=v;d.z[u.zi]+=v;if(d.g[0].on)d.g[0].ing+=v;BP.push([id,k,v,d.dt.toDateString()])}
+function enter(o,medio){
+ const p=Object.assign({id:'p'+Date.now()+Math.floor(Math.random()*1e4),t0:Date.now(),via:medio},o);PRES.push(p);bump(p.unit,p.tipo);
+ const u=UM[p.unit],txt=TPS[p.tipo]+' '+p.n+', '+(u?UN(u):p.unit);
+ addTl('Ingreso: '+txt,medio);log('Ingreso: '+txt,'Guarda 1',medio);rin();mt();return p}
+function unEnter(p){const i=PRES.indexOf(p);if(i>=0)PRES.splice(i,1);bump(p.unit,p.tipo,-1);log('Ingreso deshecho: '+p.n,'Administrador','Panel web');rin();mt()}
+function exitP(id,medio,who){
+ const i=PRES.findIndex(x=>x.id==id);if(i<0)return;const p=PRES.splice(i,1)[0],min=Math.round((Date.now()-p.t0)/60000),u=UM[p.unit];
+ addTl('Salida: '+p.n+', '+(u?UN(u):p.unit)+' ('+min+' min)',medio);log('Salida: '+p.n+' tras '+min+' min',who||'Guarda 1',medio);rin();mt()}
+function rin(){
+ const e=$('#in');if(!e)return;const l=PRES.slice().sort((a,b)=>a.t0-b.t0);
+ e.innerHTML=l.length?l.slice(0,10).map(p=>{const u=UM[p.unit],o=over(p);return `<div class="cd row ${o?'bw':'bc'}"><span style="cursor:pointer" onclick="pd('${p.id}')"><b>${p.n}</b> <span class="mu">${TPS[p.tipo]} | ${u?UN(u):p.unit} | ${fd(Date.now()-p.t0)}</span></span><span class="acts">${o?'<b class="pl er">Excede</b>':''}<button class="gh" ${ROLES[ROLE].act?'':'disabled'} onclick="exitP('${p.id}','Panel admin','Administrador')">Registrar salida</button></span></div>`}).join('')+(l.length>10?`<p class="mu">y ${l.length-10} más</p>`:''):'<p class="mu">Nadie dentro en este momento.</p>'}
+
+/* ===== Roles, copropiedades y fallas ===== */
+function rolegate(){
+ const R2=ROLES[ROLE];document.querySelectorAll('.tabs button').forEach(b=>{b.hidden=!R2.tabs.includes(b.dataset.v)});$('#pw').hidden=!R2.pan;
+ const a=document.querySelector('.tabs button.on');if(a&&a.hidden)document.querySelector('.tabs button[data-v="v-dash"]').click()}
+function selr(){
+ $('#cp').innerHTML=COP.map((c,i)=>`<option value="${i}" ${i==CI?'selected':''}>${c.n}</option>`).join('');
+ $('#cp').disabled=!ROLES[ROLE].multi}
+function setRole(r){ROLE=r;if(!ROLES[r].multi&&CI!=0){loadCop(0);refreshAll()}selr();rolegate();ri();rin();nv(CUR);toast('Vista de '+r)}
+function setCop(i){loadCop(+i);selr();refreshAll();nv(CUR);toast('Copropiedad: '+COP[CI].n)}
+const SYS={net:0,pow:0,dev:0,t:''};
+function sysr(){
+ const m=[];
+ if(SYS.net)m.push('Portería sin conexión desde '+SYS.t+'. Los datos se actualizan al reconectar.');
+ if(SYS.pow)m.push('Falla de energía en portería. Respaldo activo. Kiosco en contingencia.');
+ if(SYS.dev)m.push('Kiosco 1 desconectado desde '+SYS.t+'.');
+ $('#sysb').hidden=!m.length;
+ $('#sysb').innerHTML=m.map(x=>'<div>'+x+'</div>').join('')+'<button class="gh" style="margin-top:6px" onclick="sysoff()">Restablecer todo</button>'}
+function setSys(k){
+ SYS[k]=SYS[k]?0:1;SYS.t=hora();
+ if(k=='net'){if(SYS.net&&M.net=='on')net();else if(!SYS.net&&M.net=='off')net()}
+ log('Simulación de falla '+k+(SYS[k]?' activada':' restablecida'),'Sistema','Simulador');
+ kr();sysr();if(CUR=='cfg')VW.cfg()}
+function sysoff(){['net','pow','dev'].forEach(k=>{if(SYS[k])setSys(k)})}
+VW.emp=function(){$('#pvx').innerHTML=`<h1>${COP[CI].n}</h1><div class="cd pn"><h2>Sin datos todavía</h2><p class="mu">Esta copropiedad es nueva. Importa su listado de unidades y residentes para activar el resumen, la trazabilidad y la app.</p><br><button class="pri t" onclick="impC()">Importar unidades (simulación)</button></div>`};
+function impC(){COP[CI].empty=0;const i=CI;ST[i]=null;loadCop(i);refreshAll();selr();nv('res');toast('Unidades importadas')}
+
+/* ===== Unidades ===== */
+const U={f:'Todas',q:'',s:'ing'};
+function u30(u){let ing=0,dom=0,inc=0;for(let d=N-30;d<N;d+=1){for(let k=0;k<4;k+=1)ing+=u.c[d*4+k];dom+=u.c[d*4+1];inc+=u.i[d]}return {ing,dom,inc}}
+function u14(u){const a=[];for(let d=N-14;d<N;d+=1)a.push(u.c[d*4]+u.c[d*4+1]+u.c[d*4+2]+u.c[d*4+3]);return a}
+VW.uni=function(){
+ const S={};UL.forEach(u=>{S[u.id]=u30(u)});
+ $('#pvx').innerHTML=`<h1>Unidades <span class="pl wa" style="font-size:12px;vertical-align:middle">Datos sintéticos</span></h1>
+ <div class="g4">${ZN.map((z,i)=>{const us=UL.filter(u=>u.z==z),ing=us.reduce((a,u)=>a+S[u.id].ing,0),inc=us.reduce((a,u)=>a+S[u.id].inc,0),pq=us.reduce((a,u)=>a+u.paq,0);return `<button class="cd pn m${i%5} ${U.f==z?'sel':''}" style="text-align:left;display:block" onclick="U.f=U.f=='${z}'?'Todas':'${z}';VW.uni()"><span class="mu">${z}, ${us.length} unidades</span><div class="num">${ing}</div><span class="mu">ingresos 30 d | ${inc} incidentes | ${pq} paquetes</span></button>`}).join('')}</div>
+ <div class="cd pn"><input id="uq" class="w" placeholder="Buscar unidad o residente" value="${U.q}" oninput="U.q=this.value;ut()"><div id="ut" style="max-height:440px;overflow:auto;margin-top:8px"></div></div>`;
+ ut()}
+function ut(){
+ const S={};UL.forEach(u=>{S[u.id]=u30(u)});
+ const val=u=>U.s=='vl'?u.veh.length:U.s=='paq'?u.paq:S[u.id][U.s];
+ const rows=UL.filter(u=>(U.f=='Todas'||u.z==U.f)&&(u.id+' '+u.res).toLowerCase().includes(U.q.toLowerCase())).sort((a,b)=>val(b)-val(a));
+ const th=(k,l)=>`<th style="cursor:pointer" class="${U.s==k?'ac':'mu'}" onclick="U.s='${k}';ut()">${l}</th>`;
+ $('#ut').innerHTML=rows.length?`<table><tr><th class="mu">Unidad</th><th class="mu" style="text-align:left">Residente</th>${th('ing','Ingresos 30 d')}${th('dom','Domicilios')}${th('paq','Paquetes')}${th('inc','Incidentes')}${th('vl','Vehículos')}</tr>`+rows.map(u=>`<tr style="cursor:pointer" onclick="ud('${u.id}')"><td>${UN(u)}</td><td style="text-align:left">${u.res}</td><td>${S[u.id].ing}</td><td>${S[u.id].dom}</td><td>${u.paq?`<b class="wa">${u.paq}</b>`:0}</td><td>${S[u.id].inc?`<b class="er">${S[u.id].inc}</b>`:0}</td><td>${u.veh.length}</td></tr>`).join('')+'</table>':'<p class="mu">Ninguna unidad coincide con la búsqueda.</p>'}
+function ud(id){
+ const u=UM[id],S=u30(u),zu=UL.filter(x=>x.z==u.z),av=zu.reduce((a,x)=>a+u30(x).ing,0)/zu.length,cn=COP[CI].n;
+ const live=LOG.filter(e=>e.c==cn&&e.ev.includes(UN(u))).slice(0,4).map(e=>`<p class="mu">${new Date(e.ts).toTimeString().slice(0,8)} ${e.ev}</p>`).join('');
+ $('#dr').innerHTML=`<div class="rw"><h2>${UN(u)}</h2><button class="gh" onclick="$('#dr').classList.remove('open')">Cerrar</button></div>
+ <p class="mu">${u.z}</p><p><b>${u.res}</b></p>
+ <p>Ingresos 30 d: <b>${S.ing}</b> ${dl(S.ing,Math.round(av),'ing')}<br><span class="mu">frente al promedio de ${u.z} (${av.toFixed(0)})</span></p>
+ <div class="sp ac">${u14(u).map(h=>`<i style="height:${3+h*3}px"></i>`).join('')}</div><span class="mu">Últimos 14 días</span>
+ <h2 style="margin-top:12px">Autorizados</h2><div class="chips">${u.aut.map(a=>`<span class="pl ok">${a}</span>`).join('')}</div>
+ <h2 style="margin-top:12px">Vehículos</h2><p class="mu">${u.veh.length?u.veh.join(', '):'Sin vehículos registrados'}</p>
+ <h2 style="margin-top:12px">Visitantes frecuentes</h2>${u.frec.length?u.frec.map(f=>`<div class="row"><span>${f}</span><button class="gh" ${ED()?'':'disabled'} onclick="rstr('${f}','${id}')">Restringir</button></div>`).join(''):'<p class="mu">Sin frecuentes.</p>'}
+ <h2 style="margin-top:12px">Actividad de esta sesión</h2>${live||'<p class="mu">Sin eventos todavía.</p>'}
+ <p class="mu">Último acceso hace ${u.last} h</p>`;
+ $('#dr').classList.add('open')}
+
+/* ===== Personas ===== */
+VW.per=function(){
+ const d=ED()?'':'disabled',tabs=[['bloq','Restringidos'],['frec','Frecuentes'],['veh','Vehículos'],['res','Residentes']];
+ let b='';
+ if(PE.t=='bloq')b=`<div class="cd pn"><h2>Agregar restricción</h2><div class="rw" style="flex-wrap:wrap"><input id="pn" placeholder="Nombre" ${d}><input id="pd" placeholder="Documento" inputmode="numeric" ${d}><button class="pri t" ${d} onclick="addb()">Restringir</button></div>${ED()?'':'<p class="mu">Tu rol es de solo lectura.</p>'}</div>`+(PE.bloq.length?PE.bloq.map((x,i)=>`<div class="cd row bw"><span><b>${x.n}</b> <span class="mu">${x.doc} | ${x.m} | ${x.f}</span></span><button class="gh" ${d} onclick="delb(${i})">Quitar</button></div>`).join(''):'<p class="mu">No hay personas restringidas.</p>');
+ else if(PE.t=='frec')b=UL.filter(u=>u.frec.length).flatMap(u=>u.frec.map(f=>[f,u])).slice(0,30).map(x=>`<div class="cd row"><span><b>${x[0]}</b> <span class="mu">visita ${UN(x[1])}</span></span><span class="pl ok">Frecuente</span></div>`).join('');
+ else if(PE.t=='veh')b=UL.filter(u=>u.veh.length).flatMap(u=>u.veh.map(p=>[p,u])).slice(0,30).map(x=>`<div class="cd row"><span><b>${x[0]}</b> <span class="mu">${UN(x[1])}, ${x[1].res}</span></span><span class="pl ok">Autorizado</span></div>`).join('');
+ else b=UL.slice(0,30).map(u=>`<div class="cd row"><span><b>${u.res}</b> <span class="mu">${UN(u)}, ${u.z}</span></span><span class="mu">${u.aut.length} autorizados</span></div>`).join('');
+ $('#pvx').innerHTML=`<h1>Personas</h1><div class="chips" style="margin-bottom:12px">${tabs.map(t=>`<button class="chip t ${PE.t==t[0]?'on':''}" onclick="PE.t='${t[0]}';VW.per()">${t[1]}</button>`).join('')}</div>${b}`};
+function addb(){const n=$('#pn').value.trim(),dc=$('#pd').value.replace(/\D/g,'');if(!n||dc.length<6){toast('Escribe nombre y documento válido');return}
+ PE.bloq.unshift({n,doc:dc,m:'Restricción de administración',f:'hoy'});log('Restricción agregada: '+n,ROLE,'Personas');toast('Restringido: '+n);VW.per()}
+function delb(i){const x=PE.bloq.splice(i,1)[0];log('Restricción retirada: '+x.n,ROLE,'Personas');toast('Restricción retirada',()=>{PE.bloq.splice(i,0,x);VW.per()},8);VW.per()}
+function rstr(n,id){PE.bloq.unshift({n,doc:String(1e9+Math.floor(Math.random()*9e8)),m:'Restringido desde '+UN(UM[id]),f:'hoy'});log('Restricción agregada: '+n,ROLE,'Unidades');toast('Restringido: '+n,()=>PE.bloq.shift(),8)}
+
+/* ===== Configuración ===== */
+const INT={bar:{n:'Barrera vehicular',ph:'Fase 2',d:'Abre la barrera cuando se autoriza un vehículo.',on:0},cam:{n:'Cámaras CCTV',ph:'Fase 2',d:'Adjunta el cuadro de video al evento.',on:0},lpr:{n:'Lectura de placas',ph:'Fase 2',d:'Prellena la placa cuando llega el vehículo.',on:0},wa:{n:'WhatsApp para residentes',ph:'Piloto',d:'Envía solicitudes de autorización por WhatsApp.',on:0},cit:{n:'Citofonía IP',ph:'Fase 2',d:'Llama al residente desde el kiosco.',on:0}};
+const MIG=[{t:'Importar residentes y unidades',d:0},{t:'Registrar vehículos autorizados',d:0},{t:'Definir protocolos por tipo de ingreso',d:1},{t:'Capacitar a los guardas (2 sesiones)',d:0},{t:'Piloto de 2 semanas en paralelo con la minuta',d:0},{t:'Cierre del piloto y decisión',d:0}];
+function tpl(n){const o=tplObj(n);Object.keys(o).forEach(k=>Object.assign(CFG[k],o[k]));COP[CI].tp=n;log('Plantilla de protocolos aplicada: '+n,ROLE,'Configuración');toast('Plantilla '+n+' aplicada');VW.cfg()}
+function lum(h){const c=[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)/255).map(v=>v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2]}
+function cr(a,b){const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05)}
+function crows(){
+ const rows=[];
+ ['d','l'].forEach(k=>{const t=T[k],n=k=='d'?'Oscuro':'Claro';[['Texto principal',t.tx,t.bg],['Texto secundario',t.mu,t.sf],['Acento sobre tarjeta',t.ac,t.cd],['Éxito sobre tarjeta',t.ok,t.cd],['Alerta sobre tarjeta',t.wa,t.cd],['Error sobre tarjeta',t.er,t.cd]].forEach(x=>rows.push([n+': '+x[0],cr(x[1],x[2])]))});
+ [['Blanco sobre botón primario (inicio)','#FFFFFF','#4338CA'],['Blanco sobre botón primario (fin)','#FFFFFF','#6D28D9'],['Blanco sobre botón cian','#FFFFFF','#075985'],['Blanco sobre alerta de pánico','#FFFFFF','#A30D25']].forEach(x=>rows.push([x[0],cr(x[1],x[2])]));
+ return rows}
+VW.cfg=function(){
+ const d=ED()?'':'disabled';
+ const tg=(k,f)=>`<button class="chip t ${CFG[k][f]?'on':''}" ${d} onclick="CFG['${k}']['${f}']=CFG['${k}']['${f}']?0:1;VW.cfg()">${CFG[k][f]?'Sí':'No'}</button>`;
+ const st=(k,f,l,h,s)=>`<span class="acts"><button class="gh" ${d} onclick="CFG['${k}']['${f}']=Math.max(${l},CFG['${k}']['${f}']-${s});VW.cfg()">-</button><b style="min-width:34px;text-align:center">${CFG[k][f]}</b><button class="gh" ${d} onclick="CFG['${k}']['${f}']=Math.min(${h},CFG['${k}']['${f}']+${s});VW.cfg()">+</button></span>`;
+ const done=MIG.filter(x=>x.d).length;
+ $('#pvx').innerHTML=`<h1>Configuración de ${COP[CI].n}</h1>${ED()?'':'<p class="mu">Tu rol es de solo lectura.</p>'}
+ <div class="cd pn"><h2>Protocolos por tipo de ingreso</h2><p class="mu">Se aplican en la app del guarda y definen cuándo un ingreso se marca como excedido.</p>
+ <div class="chips" style="margin:8px 0">${['Estándar','Estricto','Flexible'].map(t=>`<button class="chip t" ${d} onclick="tpl('${t}')">Plantilla ${t}</button>`).join('')}</div>
+ <div style="overflow:auto"><table><tr class="mu"><th>Tipo</th><th>Foto</th><th>Placa</th><th>Autoriza residente</th><th>Desde (h)</th><th>Hasta (h)</th><th>Máx. (min)</th></tr>
+ ${Object.keys(CFG).map(k=>`<tr><td>${k}</td><td>${tg(k,'foto')}</td><td>${tg(k,'placa')}</td><td>${tg(k,'aut')}</td><td>${st(k,'ini',0,23,1)}</td><td>${st(k,'fin',1,24,1)}</td><td>${st(k,'max',5,720,5)}</td></tr>`).join('')}</table></div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Emergencias</h2><div class="rw"><span>Tiempo para escalar una alerta de pánico</span><span class="acts"><button class="gh" ${d} onclick="TM.esc=Math.max(10,TM.esc-10);VW.cfg()">-10 s</button><b>${TM.esc} s</b><button class="gh" ${d} onclick="TM.esc=Math.min(120,TM.esc+10);VW.cfg()">+10 s</button></span></div>
+ <button class="chip t ${TM.sim?'on':''}" style="margin-top:8px" ${d} onclick="TM.sim=TM.sim?0:1;VW.cfg()">Modo simulacro ${TM.sim?'activo':'inactivo'}</button><p class="mu">En simulacro la alerta se marca como tal y no notifica a terceros.</p>
+ <div class="rw" style="margin-top:8px"><span>Espera máxima de autorización en el kiosco</span><span class="acts"><button class="gh" ${d} onclick="TM.esp=Math.max(15,TM.esp-15);VW.cfg()">-15 s</button><b>${TM.esp} s</b><button class="gh" ${d} onclick="TM.esp=Math.min(180,TM.esp+15);VW.cfg()">+15 s</button></span></div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Sesión y acceso</h2><p class="mu">Cierre automático por inactividad. El inicio de sesión de este prototipo es una simulación.</p><div class="chips">${[5,10,30].map(m=>`<button class="chip t ${TM.ses==m?'on':''}" ${d} onclick="TM.ses=${m};log('Inactividad ajustada a ${m} min',ROLE,'Configuración');VW.cfg()">${m} min</button>`).join('')}</div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Privacidad y datos personales</h2><p class="mu">Retención de registros de ingreso. El kiosco muestra el aviso y pide aceptación antes de recoger datos. Base normativa: Ley 1581 de 2012. Valida el texto con asesoría jurídica.</p>
+ <div class="chips">${[30,90,180,365].map(r=>`<button class="chip t ${PRIV.ret==r?'on':''}" ${d} onclick="PRIV.ret=${r};log('Retención ajustada a ${r} días',ROLE,'Configuración');VW.cfg()">${r} días</button>`).join('')}</div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Puesta en marcha</h2><p class="mu">Migración desde la minuta en papel. ${done} de ${MIG.length} pasos.</p><div class="bar2"><i style="width:${done/MIG.length*100}%"></i></div>
+ ${MIG.map((x,i)=>`<div class="cd row"><span>${x.t}</span><button class="chip t ${x.d?'on':''}" ${d} onclick="MIG[${i}].d=!MIG[${i}].d;VW.cfg()">${x.d?'Hecho':'Pendiente'}</button></div>`).join('')}</div>
+ <div class="cd pn" style="margin-top:16px"><h2>Integraciones</h2><p class="mu">Demostración del diseño. Cada una exige acuerdo con el proveedor y pruebas en sitio, por eso quedan fuera del MVP.</p>
+ ${Object.keys(INT).map(k=>`<div class="cd row"><span><b>${INT[k].n}</b> <span class="pl wa">${INT[k].ph}</span><br><span class="mu">${INT[k].d}</span></span><button class="chip t ${INT[k].on?'on':''}" ${d} onclick="INT['${k}'].on=INT['${k}'].on?0:1;VW.cfg()">${INT[k].on?'Activa':'Inactiva'}</button></div>`).join('')}</div>
+ <div class="cd pn" style="margin-top:16px"><h2>Simulador de fallas</h2><p class="mu">Para revisar los estados de error en el dashboard, la app y el kiosco.</p>
+ <div class="chips">${[['net','Sin internet'],['pow','Falla de energía'],['dev','Kiosco desconectado']].map(x=>`<button class="chip t ${SYS[x[0]]?'on':''}" onclick="setSys('${x[0]}')">${x[1]}</button>`).join('')}</div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Diagnóstico de la portería</h2><p class="mu">Condiciones físicas que más afectan la operación. Los valores de batería y señal son simulados.</p>
+ ${[['Internet',SYS.net?'Sin conexión':'Estable',SYS.net],['Energía',SYS.pow?'Respaldo activo':'Red eléctrica',SYS.pow],['Kiosco',SYS.dev?'Desconectado':'En línea',SYS.dev],['Tablet de portería','Batería 78%',0]].map(x=>`<div class="cd row"><span>${x[0]}</span><b class="pl ${x[2]?'er':'ok'}">${x[1]}</b></div>`).join('')}
+ ${SYS.net||SYS.pow||SYS.dev?'<p class="wa">Recomendación: operar con la app en modo sin conexión y avisar al supervisor.</p>':''}</div>
+ <div class="cd pn" style="margin-top:16px"><h2>Datos de demostración</h2><p class="mu">Borra lo guardado en este navegador (estado, bitácora y sesión) y recarga la página.</p><button class="gh t" onclick="rstDemo()">Restablecer demostración</button></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Contraste de la paleta (medido)</h2><p class="mu">Meta AAA: 7:1 en texto. El índigo de botones se oscureció a #4338CA para cumplirla. #4F46E5 queda en elementos decorativos.</p>
+ <table><tr class="mu"><th>Par</th><th>Razón</th><th>Nivel</th></tr>${crows().map(r=>`<tr><td>${r[0]}</td><td>${r[1].toFixed(1)}:1</td><td>${r[1]>=7?'<b class="pl ok">AAA</b>':r[1]>=4.5?'<b class="pl wa">AA</b>':'<b class="pl er">No cumple</b>'}</td></tr>`).join('')}</table></div>`};
+
+/* ===== Reportes ===== */
+const RP={l:[{n:'Cierre semanal de trazabilidad',fr:'Semanal',p:'7d',dest:'Administración, Consejo',on:1},{n:'Informe mensual de incidentes',fr:'Mensual',p:'30d',dest:'Consejo',on:1},{n:'Balance anual para asamblea',fr:'Anual',p:'ano',dest:'Administración, Consejo',on:0}],v:[],nf:'Semanal',nd:'Administración',rn:''};
+function rset(k,v){RP.rn=$('#rn')?$('#rn').value:'';RP[k]=v;VW.rep()}
+VW.rep=function(){
+ const d=ED()?'':'disabled';
+ $('#pvx').innerHTML=`<h1>Reportes</h1>
+ <div class="cd pn"><h2>Informes programados</h2>${RP.l.map((r,i)=>`<div class="cd row"><span><b>${r.n}</b><br><span class="mu">${r.fr} | ${r.dest} | PDF firmado</span></span><span class="acts"><button class="gh" onclick="rpv(${i})">Generar ahora</button><button class="chip t ${r.on?'on':''}" ${d} onclick="RP.l[${i}].on=!RP.l[${i}].on;VW.rep()">${r.on?'Activo':'Pausado'}</button></span></div>`).join('')}</div>
+ <div class="cd pn" style="margin-top:16px"><h2>Nuevo informe</h2><input id="rn" class="w" placeholder="Nombre del informe" value="${RP.rn}" ${d}>
+ <div class="chips" style="margin-top:8px">${['Diario','Semanal','Mensual'].map(f=>`<button class="chip t ${RP.nf==f?'on':''}" ${d} onclick="rset('nf','${f}')">${f}</button>`).join('')}</div>
+ <div class="chips" style="margin-top:8px">${['Administración','Consejo','Empresa de vigilancia'].map(f=>`<button class="chip t ${RP.nd==f?'on':''}" ${d} onclick="rset('nd','${f}')">${f}</button>`).join('')}</div>
+ <button class="pri t w" style="margin-top:8px" ${d} onclick="rnew()">Programar informe</button></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Vistas guardadas</h2>${RP.v.length?RP.v.map((v,i)=>`<div class="cd row"><span>${v.n}</span><button class="cy" onclick="rview(${i})">Abrir</button></div>`).join(''):'<p class="mu">Aún no hay vistas guardadas. Guárdalas desde Trazabilidad.</p>'}</div>`};
+function rnew(){const n=$('#rn').value.trim();if(!n){toast('Escribe el nombre del informe');return}
+ RP.l.push({n,fr:RP.nf,p:RP.nf=='Mensual'?'30d':'7d',dest:RP.nd,on:1});RP.rn='';log('Informe programado: '+n,ROLE,'Reportes');toast('Informe programado');VW.rep()}
+function svw(){RP.v.push({n:ML[TS.m][0]+', '+PERS[TS.p][2].toLowerCase()+', '+({t:'por tiempo',g:'por guarda',tp:'por tipo',z:'por zona'})[TS.d],p:TS.p,d:TS.d,m:TS.m,c:TS.c});toast('Vista guardada en Reportes')}
+function rview(i){const v=RP.v[i];Object.assign(TS,{p:v.p,d:v.d,m:v.m,c:v.c});nv(v.d=='g'?'gua':'trz')}
+function gmx(){$('#gm').hidden=true}
+function repBody(r){
+ const [cu,pr]=ses(r.p);
+ const rows=MK.map(k=>{const c=mv(k,cu),p=mv(k,pr);return `<tr><td>${ML[k][0]}</td><td><b>${fmt(k,c)}</b></td><td class="mu">${fmt(k,p)}</td><td>${dl(c,p,k)}</td></tr>`}).join('');
+ const g=GN.map((n,k)=>[n,gv('ing',cu,k)]).sort((a,b)=>b[1]-a[1]).slice(0,3);
+ const z=ZN.map((n,k)=>[n,zv('ing',k,cu)]);
+ const code='NXR-'+hs(COP[CI].n+r.n+r.p+LOG.length);
+ return {code,html:`<p class="mu">${COP[CI].n} | ${PERS[r.p][2]} | generado ${hora()}</p>
+ <table><tr class="mu"><th>Indicador</th><th>Actual</th><th>Anterior</th><th>Cambio</th></tr>${rows}</table>
+ <h2 style="margin-top:12px">Ingresos por zona</h2><p>${z.map(x=>x[0]+': <b>'+x[1].toLocaleString('es-CO')+'</b>').join(' | ')}</p>
+ <h2 style="margin-top:12px">Guardas con más registros</h2><p>${g.map(x=>x[0]+': <b>'+x[1].toLocaleString('es-CO')+'</b>').join(' | ')}</p>
+ <p class="mu" style="margin-top:12px">Código de verificación ${code}. Firma digital simulada: en producción la genera el servidor. Datos sintéticos.</p>`,rows:MK.map(k=>[ML[k][0],mv(k,cu),mv(k,pr)])}}
+let LASTR=null;
+function rpv(i){
+ const r=RP.l[i],b=repBody(r);LASTR={r,b};
+ $('#gb').innerHTML=`<div class="rw"><h2>${r.n}</h2><button class="gh" onclick="gmx()">Cerrar</button></div>${b.html}<div class="rw" style="margin-top:12px"><button class="pri t" onclick="dlRep('html')">Descargar HTML</button><button class="cy t" onclick="dlRep('csv')">Descargar CSV</button></div>`;
+ $('#gm').hidden=false;log('Informe generado: '+r.n,ROLE,'Reportes')}
+function dlRep(f){
+ if(!LASTR)return;const {r,b}=LASTR,nm='nexora-'+r.n.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+ if(f=='csv'){const rows=[['Copropiedad',COP[CI].n],['Informe',r.n],['Indicador','Actual','Anterior']].concat(b.rows.map(x=>[x[0],x[1],x[2]]));const body=rows.map(x=>x.map(csvEsc).join(',')).join('\n');dlFile(nm+'.csv',body+'\n'+csvEsc('codigo_verificacion')+','+csvEsc(b.code))}
+ else dlFile(nm+'.html','<!doctype html><html lang="es"><meta charset="utf-8"><title>'+r.n+'</title><body style="font:14px system-ui;max-width:760px;margin:24px auto;padding:0 16px"><h1>'+r.n+'</h1>'+b.html.replace(/class="mu"/g,'style="color:#555"')+'</body></html>')}
+
+/* ===== Portafolio y nueva copropiedad ===== */
+VW.por=function(){
+ const rows=COP.map((c,i)=>{const s=ST[i]||(ST[i]=c.empty?emptyState(i):build(i));if(c.empty)return [c,i,null];const L=s.DD,cu=L.slice(-30),pr=L.slice(-60,-30);return [c,i,{ing:mv('ing',cu),inc:mv('inc',cu),resp:mv('resp',cu),pr:mv('pr',cu),pp:mv('ing',pr)}]});
+ $('#pvx').innerHTML=`<h1>Portafolio <span class="pl wa" style="font-size:12px;vertical-align:middle">Datos sintéticos</span></h1>
+ <div class="cd pn"><div style="overflow:auto"><table><tr class="mu"><th>Copropiedad</th><th>Ingresos 30 d</th><th>Cambio</th><th>Incidentes</th><th>Respuesta</th><th>Protocolo</th><th>Plantilla</th></tr>
+ ${rows.map(x=>`<tr style="cursor:pointer" onclick="setCop(${x[1]})"><td>${x[1]==CI?'<b class="ac">':'<b>'}${x[0].n}</b></td>${x[2]?`<td>${x[2].ing.toLocaleString('es-CO')}</td><td>${dl(x[2].ing,x[2].pp,'ing')}</td><td>${x[2].inc}</td><td>${x[2].resp} min</td><td>${x[2].pr}%</td>`:'<td colspan="5" class="mu">Sin datos. Importa las unidades.</td>'}<td class="mu">${x[0].tp}</td></tr>`).join('')}</table></div></div>
+ <button class="pri t" style="margin-top:12px" onclick="WZ.s=1;WZ.n='';wzr()">Agregar copropiedad</button>`};
+const WZ={s:1,n:'',t:'Torres',c:2,tp:'Estándar'};
+function wzr(){
+ const s=WZ.s,dots=`<div class="dots">${[1,2,3].map(i=>`<i class="${i<=s?'on':''}"></i>`).join('')}</div>`;
+ const body=s==1?`<h2>Nueva copropiedad</h2><input class="w" placeholder="Nombre" value="${WZ.n}" oninput="WZ.n=this.value"><div class="chips" style="margin-top:8px">${['Torres','Casas','Mixto'].map(t=>`<button class="chip t ${WZ.t==t?'on':''}" onclick="WZ.t='${t}';wzr()">${t}</button>`).join('')}</div><button class="pri t w" style="margin-top:12px" onclick="if(!WZ.n.trim()){toast('Escribe el nombre');return}WZ.s=2;wzr()">Siguiente</button>`
+ :s==2?`<h2>Tamaño</h2><p class="mu">${WZ.t=='Casas'?'Manzanas':'Torres'}</p><div class="chips">${[1,2,3,4,5,6].map(n=>`<button class="chip t ${WZ.c==n?'on':''}" onclick="WZ.c=${n};wzr()">${n}</button>`).join('')}</div><button class="pri t w" style="margin-top:12px" onclick="WZ.s=3;wzr()">Siguiente</button>`
+ :`<h2>Protocolos base</h2><div class="chips">${['Estándar','Estricto','Flexible'].map(t=>`<button class="chip t ${WZ.tp==t?'on':''}" onclick="WZ.tp='${t}';wzr()">${t}</button>`).join('')}</div><button class="pri t w" style="margin-top:12px" onclick="wzend()">Crear copropiedad</button>`;
+ $('#gb').innerHTML=dots+body+`<button class="gh t w" style="margin-top:8px" onclick="gmx()">Cancelar</button>`;$('#gm').hidden=false}
+function wzend(){
+ const c=WZ.c,lay=[];
+ if(WZ.t=='Torres'||WZ.t=='Mixto')for(let t=0;t<c;t+=1)lay.push({n:'Torre '+(t+1),k:'a',f:[t*5+1,t*5+5]});
+ if(WZ.t=='Casas')for(let t=0;t<c;t+=1)lay.push({n:'Manzana '+String.fromCharCode(65+t),k:'c',c:[t*10+1,t*10+10]});
+ if(WZ.t=='Mixto')lay.push({n:'Casas',k:'c',c:[1,8]});
+ COP.push({n:WZ.n.trim(),tp:WZ.tp,gi:COP.length,lay,empty:1});
+ loadCop(COP.length-1);log('Copropiedad creada: '+WZ.n,ROLE,'Portafolio');gmx();selr();refreshAll();toast('Copropiedad creada. Importa sus unidades para comenzar.');nv('uni')}
+
+
+/* ===== Descargas ===== */
+function csvEsc(v){return '"'+String(v).replace(/"/g,'""')+'"'}
+let TRW=null;
+async function dlFile(name,data){
+ try{if(typeof claude!='undefined'&&claude.use){const d=await claude.use('downloads');if(d){await d.save({filename:name,data});toast('Archivo guardado');return}}}
+ catch(e){if(e&&e.code=='declined'){toast('Descarga cancelada');return}}
+ try{const b=new Blob([name.endsWith('.csv')?'\uFEFF'+data:data],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove();toast('Archivo descargado')}catch(e){toast('No se pudo descargar en este entorno')}}
+function exportCsv(){
+ if(!TRW){toast('Abre primero una vista de trazabilidad');return}
+ const r=[['Copropiedad',COP[CI].n],['Período',PERS[TRW.p][2]],['Métrica',ML[TRW.m][0]],[],['Etiqueta','Actual'].concat(TRW.c?['Anterior']:[])];
+ TRW.L.forEach((l,i)=>r.push([l,TRW.C[i]].concat(TRW.c?[TRW.P[i]]:[])));
+ const body=r.map(x=>x.map(csvEsc).join(',')).join('\n');
+ log('Exportación de trazabilidad: '+ML[TRW.m][0],USER?USER.n:ROLE,'Exportación');
+ dlFile('nexora-trazabilidad-'+TRW.p+'.csv',body+'\n'+csvEsc('codigo_verificacion')+','+csvEsc(hs(body)))}
+function expAudit(){
+ const ev=LOG.filter(e=>e.c==COP[CI].n);
+ dlFile('nexora-auditoria.json',JSON.stringify({copropiedad:COP[CI].n,generado:new Date().toISOString(),algoritmo:'SHA-256 truncado a 16 caracteres, encadenado',eventos:ev},null,1))}
+
+/* ===== Correspondencia ===== */
+function syncPaq(){UL.forEach(u=>{u.paq=PK.filter(p=>p.unit==u.id&&p.st=='p').length})}
+function addPk(unit,carrier){
+ const p={id:'k'+Date.now()+Math.floor(Math.random()*1e3),unit,carrier,t0:Date.now(),st:'p'};PK.push(p);syncPaq();
+ log('Paquete recibido para '+UN(UM[unit])+' ('+carrier+')','Guarda 1','Correspondencia');addTl('Paquete: '+UN(UM[unit])+', '+carrier,'Correspondencia');
+ toast(INT.wa.on?'Residente notificado por WhatsApp':'Residente notificado');mt();return p}
+function deliverPk(id,who){
+ const p=PK.find(x=>x.id==id);if(!p||p.st!='p')return;
+ p.st='e';p.t1=Date.now();p.code=hs(p.id+p.t1).slice(0,8).toUpperCase();p.who=who;syncPaq();
+ log('Paquete entregado a '+who+' (constancia '+p.code+')',who,'Correspondencia');mt()}
+function pkv(){
+ const d=M.d;
+ return `<h2>Registrar paquete</h2><input class="w" placeholder="Buscar unidad o residente" value="${M.dq}" oninput="M.dq=this.value;dlist()"><div class="chips" style="margin-top:8px">${['Todas'].concat(ZN).map(z=>`<button class="chip t ${M.dz==z?'on':''}" onclick="M.dz='${z}';mr()">${z}</button>`).join('')}</div><div id="dl" class="chips" style="margin-top:8px"></div>
+ <p class="mu" style="margin-top:8px">Empresa</p><div class="chips">${['Servientrega','Coordinadora','Rappi','Otro'].map(c=>`<button class="chip t ${d.car==c?'on':''}" onclick="M.d.car='${c}';mr()">${c}</button>`).join('')}</div>
+ <button class="pri t w" style="margin-top:8px" ${d.apt&&d.car?'':'disabled'} onclick="pkgo()">Registrar y notificar</button><button class="gh t w" style="margin-top:8px" onclick="M.pkm=0;M.step=1;M.d={};mr()">Cancelar</button>`}
+function pkgo(){
+ const d=M.d;
+ if(M.net!='on'){M.pq.push({pk:{unit:d.apt,car:d.car}});toast('Guardado. Se notificará al reconectar')}else addPk(d.apt,d.car);
+ M.pkm=0;M.d={};M.step=1;M.tab=0;mr()}
+function useCode(){
+ const v=($('#cod').value||'').trim().toUpperCase(),c=CODES.find(x=>x.code==v&&!x.used&&Date.now()-x.t<4*3600000);
+ if(!c){toast('Código inválido, usado o vencido');log('Código temporal rechazado','Guarda 1','App guarda');return}
+ c.used=1;const u=UM[c.unit];reg({doc:'COD'+v,n:'Invitado con código',unit:c.unit,tipo:0},'Código temporal');
+ if(RS.code==v)RS.code=null;rr();mr()}
+VW.cor=function(){
+ const pend=PK.filter(p=>p.st=='p').sort((a,b)=>a.t0-b.t0),ent=PK.filter(p=>p.st=='e').sort((a,b)=>b.t1-a.t1).slice(0,10);
+ $('#pvx').innerHTML=`<h1>Correspondencia <span class="pl wa" style="font-size:12px;vertical-align:middle">Flujo básico</span></h1>
+ <p class="mu">En tus entrevistas esta necesidad tuvo evidencia fuerte en un administrador e insuficiente en el resto (H4). Por eso se mantiene simple hasta validarla.</p>
+ <div class="cd pn"><h2>Pendientes (${pend.length})</h2>${pend.length?pend.map(p=>{const h=(Date.now()-p.t0)/3600000,u=UM[p.unit];return `<div class="cd row ${h>48?'bw':'bc'}"><span><b>${u?UN(u):p.unit}</b> <span class="mu">${p.carrier} | hace ${h<1?Math.round(h*60)+' min':Math.round(h)+' h'}${u?' | '+u.res:''}</span></span>${h>48?'<b class="pl er">Más de 48 h</b>':''}</div>`}).join(''):'<p class="mu">No hay paquetes pendientes.</p>'}</div>
+ <div class="cd pn" style="margin-top:16px"><h2>Entregados</h2>${ent.length?ent.map(p=>`<div class="cd row"><span><b>${UN(UM[p.unit])}</b> <span class="mu">${p.carrier} | recibió ${p.who}</span></span><span class="pl ok">Constancia ${p.code}</span></div>`).join(''):'<p class="mu">Aún no hay entregas registradas.</p>'}</div>`};
+
+/* ===== Registro de personas dentro: conversación ===== */
+function pd(id){
+ const p=PRES.find(x=>x.id==id);if(!p)return;p.msgs=p.msgs||[];const u=UM[p.unit];
+ $('#dr').innerHTML=`<div class="rw"><h2>${p.n}</h2><button class="gh" onclick="$('#dr').classList.remove('open')">Cerrar</button></div>
+ <p class="mu">${TPS[p.tipo]} | ${u?UN(u):p.unit}</p><p>Dentro hace <b>${fd(Date.now()-p.t0)}</b> ${over(p)?'<b class="pl er">Excede</b>':''}</p><p class="mu">Ingresó por ${p.via||'portería'}</p>
+ <button class="pri t w" ${ROLES[ROLE].act?'':'disabled'} onclick="exitP('${p.id}','Panel admin','Administrador');$('#dr').classList.remove('open')">Registrar salida</button>
+ <h2 style="margin-top:12px">Conversación del registro</h2>${p.msgs.length?p.msgs.map(m=>`<p><b>${m.a}</b> <span class="mu">${m.t}</span><br>${m.x}</p>`).join(''):'<p class="mu">Sin mensajes. La instrucción llega a la portería junto a este registro.</p>'}
+ <input id="pm" class="w" placeholder="Instrucción para la portería" ${ROLES[ROLE].act?'':'disabled'}><button class="cy t w" style="margin-top:8px" ${ROLES[ROLE].act?'':'disabled'} onclick="pmt('${p.id}')">Enviar</button>`;
+ $('#dr').classList.add('open')}
+function pmt(id){const p=PRES.find(x=>x.id==id),v=$('#pm').value.trim();if(!p||!v)return;p.msgs.push({a:USER?USER.n:ROLE,t:hora(),x:v});log('Mensaje en registro ('+p.n+'): '+v,USER?USER.n:ROLE,'Chat del registro');toast('Instrucción enviada a la portería');pd(id);mr()}
+
+/* ===== Valor y piloto ===== */
+const VAL={pap:75,dig:20,pre:0,who:'cop',un:'uni',pu:3,pst:[],dst:[]};
+let SW=null,SWI=null;
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+function swgo(k){if(SW)return;SW={k,t0:Date.now()};clearInterval(SWI);SWI=setInterval(()=>{const e=$('#swt');if(e&&SW)e.textContent=((Date.now()-SW.t0)/1000).toFixed(1)+' s'},150);VW.val()}
+function swstop(){if(!SW)return;const sec=Math.round((Date.now()-SW.t0)/100)/10;(SW.k=='pap'?VAL.pst:VAL.dst).push(sec);SW=null;clearInterval(SWI);VW.val()}
+function swuse(){if(VAL.pst.length<3||VAL.dst.length<3){toast('Se necesitan al menos 3 mediciones de cada tipo');return}VAL.pap=Math.max(20,Math.round(avg(VAL.pst)));VAL.dig=Math.max(5,Math.round(avg(VAL.dst)));log('Supuestos de valor ajustados con mediciones del piloto',USER?USER.n:ROLE,'Valor');VW.val()}
+VW.val=function(){
+ const reg=Math.round(DD.slice(-30).reduce((a,d)=>a+d.ing,0)/30),ed=ED()||ROLE=='Administrador';
+ $('#pvx').innerHTML=`<h1>Valor para la copropiedad <span class="pl wa" style="font-size:12px;vertical-align:middle">Hipótesis por validar</span></h1>
+ <div class="cd pn"><h2>Lo que dice la evidencia de tu documento</h2><p class="mu">7 entrevistas (4 administradores, 3 empresas de seguridad). El control de acceso salió validado (3,8/5). Solución, propuesta de valor, métricas, canales, costos e ingresos siguen pendientes de validar, y no hay evidencia de disposición de pago.</p></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Tiempo por registro</h2><p>Registros por día (promedio de 30 días): <b>${reg}</b></p>
+ <p class="mu">Segundos con minuta de papel: <b id="v1"></b></p><input type="range" min="20" max="180" value="${VAL.pap}" class="w" oninput="VAL.pap=+this.value;valr()">
+ <p class="mu">Segundos con NEXORA: <b id="v2"></b></p><input type="range" min="5" max="90" value="${VAL.dig}" class="w" oninput="VAL.dig=+this.value;valr()"></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Medir en el piloto</h2><p class="mu">Cronometra registros reales en la portería y usa los promedios como supuestos.</p>
+ <div class="rw" style="flex-wrap:wrap"><button class="gh t" ${SW?'disabled':''} onclick="swgo('pap')">Iniciar registro en papel</button><button class="cy t" ${SW?'disabled':''} onclick="swgo('dig')">Iniciar registro con NEXORA</button><button class="pri t" ${SW?'':'disabled'} onclick="swstop()">Detener</button></div>
+ <p class="num" id="swt" style="font-size:28px">${SW?'0.0 s':'0 s'}</p>
+ <p class="mu">Papel: ${VAL.pst.length} mediciones, promedio ${avg(VAL.pst).toFixed(1)} s | NEXORA: ${VAL.dst.length} mediciones, promedio ${avg(VAL.dst).toFixed(1)} s</p>
+ <div class="rw" style="flex-wrap:wrap"><button class="gh t" onclick="swuse()">Usar promedios medidos</button><button class="gh t" onclick="VAL.pst=[];VAL.dst=[];VW.val()">Borrar mediciones</button></div></div>
+ <div class="cd pn" style="margin-top:16px"><h2>Quién paga y cómo se cobra (hipótesis)</h2>
+ <div class="chips">${[['cop','Paga la copropiedad'],['vig','Paga la empresa de vigilancia']].map(x=>`<button class="chip t ${VAL.who==x[0]?'on':''}" onclick="VAL.who='${x[0]}';VW.val()">${x[1]}</button>`).join('')}</div>
+ <div class="chips" style="margin-top:8px">${[['uni','Por unidad'],['cp','Por copropiedad'],['pu','Por puesto de guarda']].map(x=>`<button class="chip t ${VAL.un==x[0]?'on':''}" onclick="VAL.un='${x[0]}';VW.val()">${x[1]}</button>`).join('')}</div>
+ <p class="mu" style="margin-top:8px">Precio mensual en COP, según la unidad de cobro elegida (opcional)</p><input class="w" inputmode="numeric" placeholder="Define un precio de prueba" value="${VAL.pre||''}" oninput="VAL.pre=+this.value.replace(/[^0-9]/g,'')||0;valr()">
+ ${VAL.un=='pu'?`<p class="mu">Puestos por copropiedad: <b id="v3">${VAL.pu}</b></p><input type="range" min="1" max="8" value="${VAL.pu}" class="w" oninput="VAL.pu=+this.value;valr()">`:''}</div>
+ <div class="g4" id="vr" style="margin-top:16px"></div>
+ <div class="cd pn"><h2>Qué no mide este cálculo</h2><p class="mu">No cuantifica incidentes evitados, disputas resueltas con evidencia ni errores de transcripción evitados. Tampoco costos de implementación ni de la terminal opcional, que podría ser préstamo, alquiler o compra.</p></div>`;valr()};
+function valr(){
+ const reg=Math.round(DD.slice(-30).reduce((a,d)=>a+d.ing,0)/30),dif=Math.max(0,VAL.pap-VAL.dig),h=reg*dif/3600;
+ const cops=COP.filter(c=>!c.empty).length,nc=VAL.who=='vig'?cops:1;
+ const base=VAL.un=='uni'?(VAL.who=='vig'?COP.reduce((a,c,i)=>a+(c.empty?0:(ST[i]||(ST[i]=build(i))).UL.length),0):UL.length):VAL.un=='cp'?nc:VAL.pu*nc;
+ $('#v1').textContent=VAL.pap;$('#v2').textContent=VAL.dig;if($('#v3'))$('#v3').textContent=VAL.pu;
+ $('#vr').innerHTML=[['Tiempo liberado por día',h.toFixed(1)+' h','en portería'],['Tiempo liberado por mes',(h*30).toFixed(0)+' h','supuesto de 30 días'],['Reducción por registro',Math.round(dif/Math.max(1,VAL.pap)*100)+'%','frente a la minuta'],['Ingreso mensual (hipótesis)',VAL.pre?(VAL.pre*base).toLocaleString('es-CO')+' COP':'Sin precio',base+' '+(VAL.un=='uni'?'unidades':VAL.un=='cp'?'copropiedades':'puestos')]].map((m,i)=>`<div class="cd pn m${i}"><span class="mu">${m[0]}</span><div class="num" style="font-size:26px">${m[1]}</div><span class="mu">${m[2]}</span></div>`).join('')}
+
+/* ===== Cobertura frente al documento de negocio ===== */
+const COV=[['Control de acceso: registro, autorización y seguimiento','Cubierto','App del guarda, kiosco y dashboard','trz'],['Visitantes, domiciliarios, contratistas y vehículos','Cubierto','Cuatro tipos, cada uno con su protocolo','cfg'],['Entrada y salida según el protocolo','Cubierto','Salida, permanencia y alerta por exceso','res'],['Autorización del residente y códigos temporales','Cubierto','App del residente; la portería valida el código','res'],['El QR no sustituye la validación humana','Cubierto','El guarda confirma la identidad antes de permitir',''],['Comunicación vinculada al evento','Cubierto','Conversación en incidencias, ingresos y personas dentro','res'],['Novedades con responsable, evidencia, acciones y cierre','Cubierto','Panel de incidencias','res'],['Correspondencia con constancia de entrega','Parcial','Flujo básico. Tu documento pide validar su profundidad (H4, 2/5)','cor'],['Supervisión e indicadores desde la operación','Cubierto','Trazabilidad por tiempo, guarda, zona y tipo','trz'],['Un único registro, con exportación','Cubierto','Descarga de CSV, informes HTML y bitácora','rep'],['Corresponsabilidad de residentes (H5)','Parcial','Mide su tiempo de respuesta; faltan reglas e incentivos','trz'],['Infraestructura y condiciones físicas (H6)','Parcial','Diagnóstico y simulador; no mide hardware','cfg'],['Coordinación entre administración, vigilancia y residentes (H7)','Parcial','Conversaciones y estados compartidos; falta medir su efecto','res'],['Operación sin internet o energía','Parcial','Cola local y contingencia; falta resolver conflictos y reloj confiable',''],['Permisos y datos personales','Parcial','Sesión con segundo factor, roles, consentimiento y retención simulados; falta servidor y revisión jurídica','prd'],['Dispositivos existentes y terminal opcional','Cubierto','Web en computador, celular y tablet; kiosco como complemento',''],['Terminal en préstamo, alquiler o compra','Pendiente','No modelado: depende de la viabilidad económica',''],['Modelo B2B SaaS y unidad de cobro','Hipótesis','Calculadora con supuestos; sin evidencia de disposición de pago','val'],['Quién paga: copropiedad o empresa de vigilancia','Hipótesis','Ambas rutas se simulan; faltan validarlas con clientes','val'],['Lean Canvas: solución, métricas, canales, costos, ingresos','Hipótesis','Siguen pendientes de validar en tu documento','']];
+VW.cov=function(){
+ const c=x=>COV.filter(r=>r[1]==x).length,cl={Cubierto:'ok',Parcial:'wa',Pendiente:'er',Hipótesis:'ac'};
+ $('#pvx').innerHTML=`<h1>Cobertura frente al documento de negocio</h1>
+ <div class="g4"><div class="cd pn m3"><span class="mu">Cubierto</span><div class="num">${c('Cubierto')}</div></div><div class="cd pn m1"><span class="mu">Parcial</span><div class="num">${c('Parcial')}</div></div><div class="cd pn m0"><span class="mu">Hipótesis por validar</span><div class="num">${c('Hipótesis')}</div></div><div class="cd pn m4"><span class="mu">Pendiente</span><div class="num">${c('Pendiente')}</div></div></div>
+ <p class="mu">"Cubierto" significa que el prototipo lo representa. No significa validado con clientes: eso solo lo dan las entrevistas y el piloto.</p>
+ ${COV.map(r=>`<div class="cd row"><span><b>${r[0]}</b><br><span class="mu">${r[2]}</span></span><span class="acts"><b class="pl ${cl[r[1]]||'wa'}">${r[1]}</b>${r[3]?`<button class="gh" onclick="nv('${r[3]}')">Ver</button>`:''}</span></div>`).join('')}`};
+
+/* ===== Preparación para producción ===== */
+const PRD={};
+const PRDL=[['Seguridad','Ingeniería',['Autenticación en servidor: contraseñas con hash, segundo factor verificado por el servidor y límite de intentos','Aislamiento de datos por copropiedad y permisos por rol en el servidor','Cifrado en tránsito y en reposo; gestión de secretos','Bitácora en servidor con sellado de tiempo de un tercero de confianza','Pruebas de penetración y revisión de dependencias','Copias de seguridad y plan de recuperación']],
+['Datos personales','Jurídico y producto',['Política de tratamiento y aviso de privacidad redactados por un abogado','Autorización previa del titular y registro de su aceptación','Finalidad, retención y supresión definidas; consulta y rectificación del titular','Contrato con proveedores que tratan datos (nube, mensajería)','Minimización: qué se guarda de fotos y documentos, por cuánto tiempo','Revisar si corresponde registrar las bases de datos']],
+['Valor probatorio','Jurídico',['Concepto sobre el valor de la bitácora y de las constancias en una disputa','Firma digital con certificado de una entidad autorizada para los informes','Cadena de custodia de fotos y video cuando se integren cámaras']],
+['Operación','Operaciones',['Modo sin conexión con resolución de conflictos y reloj confiable','Escalamiento de pánico por SMS y llamada con un proveedor, y soporte para atenderlo','Monitoreo, alertas y acuerdos de servicio','Pruebas con guardas en una portería, con la minuta en paralelo']],
+['Negocio','Producto',['Validar disposición de pago con administradores y empresas de seguridad','Validar la unidad de cobro y quién decide la compra','Piloto de 2 semanas con las mediciones de la pantalla Valor','Decidir el modelo de la terminal: préstamo, alquiler o compra']]];
+const PRDS=['Pendiente','En curso','Hecho'];
+VW.prd=function(){
+ const tot=PRDL.reduce((a,g)=>a+g[2].length,0),done=Object.values(PRD).filter(v=>v==2).length;
+ $('#pvx').innerHTML=`<h1>Preparación para producción</h1>
+ <p class="mu">Lo que este prototipo simula y debe construirse de verdad. Marcos a confirmar con asesoría jurídica: Ley 1581 de 2012 (datos personales), Ley 675 de 2001 (propiedad horizontal) y Ley 527 de 1999 (mensajes de datos y firmas). Esta lista no es un concepto legal.</p>
+ <div class="cd pn"><p>${done} de ${tot} tareas hechas</p><div class="bar2"><i style="width:${done/tot*100}%"></i></div></div>
+ ${PRDL.map((g,gi)=>`<div class="cd pn" style="margin-top:16px"><h2>${g[0]} <span class="mu" style="font-weight:400">| ${g[1]}</span></h2>${g[2].map((t,ti)=>{const k=gi+'-'+ti,v=PRD[k]||0;return `<div class="cd row"><span>${t}</span><button class="chip t ${v==2?'on':''}" ${ED()?'':'disabled'} onclick="PRD['${k}']=((PRD['${k}']||0)+1)%3;VW.prd()">${PRDS[v]}</button></div>`}).join('')}</div>`).join('')}`};
+
+/* ===== Persistencia ===== */
+let PERS0=null;
+function savS(){
+ try{
+  const per={};ST.forEach((s,i)=>{if(s&&s.DD&&COP[i]&&!COP[i].empty)per[COP[i].n]={cfg:s.CFG,pe:s.PE,items:s.items,tl:s.TL,pa:s.PA,rsq:s.RS.q,rscode:s.RS.code,codes:s.CODES,pres:s.PRES,bumps:s.BP,incs:s.IC,pk:s.PK}});
+  localStorage.setItem('nexora_state_v2',JSON.stringify({cop:COP.slice(3).map(c=>({n:c.n,tp:c.tp,gi:c.gi,lay:c.lay,empty:c.empty})),tp:COP.slice(0,3).map(c=>c.tp),per,rp:RP,int:INT,tm:TM,priv:PRIV,mig:MIG,val:VAL,prd:PRD}))}catch(e){}}
+function loadS(){
+ try{const j=JSON.parse(localStorage.getItem('nexora_state_v2')||'null');if(!j)return;
+  (j.cop||[]).forEach(c=>{if(!COP.some(x=>x.n==c.n))COP.push(c)});(j.tp||[]).forEach((t,i)=>{if(COP[i]&&t)COP[i].tp=t});
+  Object.assign(RP,j.rp||{});Object.keys(j.int||{}).forEach(k=>{if(INT[k])INT[k].on=j.int[k].on});Object.assign(TM,j.tm||{});Object.assign(PRIV,j.priv||{});
+  if(j.mig)j.mig.forEach((m,i)=>{if(MIG[i])MIG[i].d=m.d});Object.assign(VAL,j.val||{});Object.assign(PRD,j.prd||{});PERS0=j.per||{}}catch(e){}}
+function applyP(i,s){
+ const p=PERS0&&PERS0[COP[i].n];if(!p||COP[i].empty)return;
+ if(p.cfg)Object.keys(p.cfg).forEach(k=>{if(s.CFG[k])Object.assign(s.CFG[k],p.cfg[k])});
+ if(p.pe)Object.assign(s.PE,p.pe);
+ if(p.items)s.items.splice(0,s.items.length,...p.items);if(p.tl)s.TL.splice(0,s.TL.length,...p.tl);if(p.pa)s.PA.splice(0,s.PA.length,...p.pa);
+ if(p.rsq)s.RS.q.splice(0,s.RS.q.length,...p.rsq);s.RS.code=p.rscode||null;if(p.codes)s.CODES.push(...p.codes);
+ if(p.pres)s.PRES.splice(0,s.PRES.length,...p.pres);if(p.pk)s.PK.splice(0,s.PK.length,...p.pk);
+ (p.bumps||[]).forEach(b=>{const x=s.DD.findIndex(d=>d.dt.toDateString()==b[3]),u=s.UM[b[0]];if(x>=0&&u){const d=s.DD[x];u.c[x*4+b[1]]+=b[2];d.t[b[1]]+=b[2];d.ing+=b[2];d.z[u.zi]+=b[2];if(d.g[0].on)d.g[0].ing+=b[2];s.BP.push(b)}});
+ (p.incs||[]).forEach(b=>{const x=s.DD.findIndex(d=>d.dt.toDateString()==b[1]);if(x>=0){const d=s.DD[x];d.inc+=1;if(d.zi[b[0]]!==undefined)d.zi[b[0]]+=1;if(d.g[0].on)d.g[0].inc+=1;s.IC.push(b)}});
+ s.UL.forEach(u=>{u.paq=s.PK.filter(x=>x.unit==u.id&&x.st=='p').length})}
+function rstDemo(){try{localStorage.removeItem('nexora_state_v2');localStorage.removeItem('nexora_log');sessionStorage.clear()}catch(e){}location.reload()}
+
+/* ===== Inicio de sesión (simulado) ===== */
+const USERS=[{id:'adm',n:'Sofía Cárdenas',role:'Administrador',pin:'2468',d:'Administra Altos del Río'},{id:'sup',n:'Carlos Mena',role:'Supervisor',pin:'1357',d:'Supervisor de turno'},{id:'vig',n:'Marcela Ríos',role:'Empresa de vigilancia',pin:'9753',d:'Varias copropiedades'},{id:'con',n:'Julián Ospina',role:'Consejo',pin:'1122',d:'Consejo de administración'}];
+let USER=null,LAST=Date.now();const AU={s:'pick',u:null,f:0,lock:0,otp:'',msg:''};
+function lgr(){
+ const e=$('#lg');if(USER){e.hidden=true;return}e.hidden=false;
+ const lk=AU.lock>Date.now();let b='';
+ if(AU.s=='pick')b=`<h2>Iniciar sesión</h2><p class="mu">Simulación por rol. En producción la validación ocurre en el servidor, con contraseña, segundo factor y límite de intentos.</p>${AU.msg?`<p class="wa">${AU.msg}</p>`:''}`+USERS.map((u,i)=>`<button class="cd row w" onclick="pickU(${i})"><span style="text-align:left"><b>${u.n}</b><br><span class="mu">${u.role} | ${u.d}</span></span><span class="mu">PIN de demostración ${u.pin}</span></button>`).join('');
+ else if(AU.s=='pin')b=`<h2>${AU.u.n}</h2><p class="mu">Escribe tu PIN de 4 dígitos</p><input id="pin" class="w" type="password" inputmode="numeric" maxlength="4" autocomplete="off" ${lk?'disabled':''}><p class="er">${AU.msg}</p><button class="pri t w" onclick="chkPin()" ${lk?'disabled':''}>Continuar</button><button class="gh t w" style="margin-top:8px" onclick="AU.s='pick';AU.msg='';lgr()">Volver</button>`;
+ else b=`<h2>Verificación en dos pasos</h2><p class="mu">Código enviado al teléfono registrado (simulado): <b class="ac">${AU.otp}</b></p><input id="otp" class="w" inputmode="numeric" maxlength="6" autocomplete="off"><p class="er">${AU.msg}</p><button class="pri t w" onclick="chkOtp()">Entrar</button><button class="gh t w" style="margin-top:8px" onclick="AU.s='pick';AU.msg='';lgr()">Cancelar</button>`;
+ $('#lgb').innerHTML='<b class="logo" style="font-size:22px">NEXORA</b>'+b;const f=$('#pin')||$('#otp');if(f&&!lk)f.focus()}
+function pickU(i){AU.u=USERS[i];AU.s='pin';AU.msg='';lgr()}
+function chkPin(){
+ if(AU.lock>Date.now())return;
+ if(($('#pin').value||'')==AU.u.pin){AU.f=0;AU.otp=String(Math.floor(100000+Math.random()*900000));AU.s='otp';AU.msg='';log('PIN correcto, falta el segundo factor',AU.u.n,'Autenticación');lgr()}
+ else{AU.f+=1;log('Inicio de sesión fallido ('+AU.f+')',AU.u.n,'Autenticación');if(AU.f>=3){AU.lock=Date.now()+30000;AU.f=0;AU.msg='Demasiados intentos. Bloqueado por 30 s.';setTimeout(lgr,30500)}else AU.msg='PIN incorrecto. Intento '+AU.f+' de 3.';lgr()}}
+function chkOtp(){if(($('#otp').value||'')==AU.otp)startSession(AU.u);else{AU.msg='Código incorrecto.';log('Segundo factor fallido',AU.u.n,'Autenticación');lgr()}}
+function startSession(u){
+ USER=u;ROLE=u.role;try{sessionStorage.setItem('nexora_sess',JSON.stringify({id:u.id,t:Date.now()}))}catch(e){}
+ if(!ROLES[ROLE].multi&&CI!=0)loadCop(0);LAST=Date.now();AU.s='pick';AU.msg='';
+ log('Sesión iniciada como '+u.role,u.n,'Autenticación');
+ $('#us').textContent=u.n+' | '+u.role;$('#lo').hidden=false;lgr();selr();rolegate();refreshAll();nv('res')}
+function logout(msg){
+ log('Sesión cerrada',USER?USER.n:'','Autenticación');USER=null;try{sessionStorage.removeItem('nexora_sess')}catch(e){}
+ $('#us').textContent='';$('#lo').hidden=true;$('#dr').classList.remove('open');$('#gm').hidden=true;$('#md').hidden=true;AU.s='pick';AU.msg=typeof msg=='string'?msg:'';lgr()}
+function authInit(){
+ try{const q=JSON.parse(sessionStorage.getItem('nexora_sess')||'null'),u=q&&USERS.find(x=>x.id==q.id);if(u&&Date.now()-q.t<30*60000){startSession(u);return}}catch(e){}
+ lgr()}
+['pointerdown','keydown','touchstart'].forEach(e=>document.addEventListener(e,()=>{LAST=Date.now()}));
+
+log('Turno iniciado','Guarda 1','App guarda');
+theme();loadS();loadCop(0);selr();rolegate();nv('res');refreshAll();
+setInterval(savS,3000);addEventListener('pagehide',savS);
+setInterval(()=>{if(USER&&Date.now()-LAST>TM.ses*60000)logout('Sesión cerrada por inactividad.')},5000);
+authInit();
+setInterval(()=>{
+ if(COP[CI].empty||SYS.net||!UL.length)return;
+ if(Math.random()<.55||PRES.length<4){const u=UL[Math.floor(Math.random()*UL.length)],tp=[0,0,1,1,1,2,3][Math.floor(Math.random()*7)];enter({doc:String(Date.now()).slice(-10),n:pn(),unit:u.id,tipo:tp},['QR','Tarjeta','App guarda','Kiosco'][Math.floor(Math.random()*4)])}
+ else{const p=PRES[Math.floor(Math.random()*PRES.length)];exitP(p.id,'Tarjeta','Guarda 1')}
+ rin();mt()},6000);
+</script>
+</body>
+</html>
